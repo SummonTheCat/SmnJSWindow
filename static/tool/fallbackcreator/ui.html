@@ -19,331 +19,665 @@
                 </div>
 
                 <hr class="hr-main">
-                
-                <!------------ Initial Phase Sliders ------------>
-                <div id="initial-phase-sliders">
-                    <h3 class="option-heading">Initial Phase Settings</h3>
-                    
-                    <hr class="hr-sub">
-                    <!-- Text Styling for Heading -->
-                    <div class="text-style-options">
-                        <h4 class="option-sub-heading">Heading Text Styling</h4>
-                        <!-- Slider for Fallback Heading Position -->
-                        <div class="option-row">
-                            <label for="heading-position-slider">Position:</label>
-                            <input type="range" id="heading-position-slider" name="heading-position-slider" min="0"
-                                max="100" value="10" />
-                            <span id="heading-position-value">10%</span>
-                        </div>
-                        <!-- Text Color Picker -->
-                        <div class="option-row">
-                            <label for="heading-text-color">Text Color:</label>
-                            <input type="color" id="heading-text-color" name="heading-text-color" value="#ffffff" />
-                        </div>
 
-                        <!-- Drop Shadow Controls -->
-                        <div class="text-style-options">
-                            <h5>Drop Shadow</h5>
-                            <div class="option-row">
-                                <label for="heading-drop-shadow-toggle">Enable Drop Shadow</label>
-                                <input type="checkbox" id="heading-drop-shadow-toggle" />
-                            </div>
-                            <div class="option-row">
-                                <label>Offset X:</label>
-                                <input type="number" id="heading-shadow-offset-x" name="heading-shadow-offset-x" min="0"
-                                    value="2" />
-                                <label>Offset Y:</label>
-                                <input type="number" id="heading-shadow-offset-y" name="heading-shadow-offset-y" min="0"
-                                    value="2" />
-                            </div>
-                            <div class="option-row">
-                                <label for="heading-shadow-blur">Blur (px):</label>
-                                <input type="number" id="heading-shadow-blur" name="heading-shadow-blur" min="0"
-                                    value="4" />
-                            </div>
-                            <div class="option-row">
-                                <label for="heading-shadow-color">Shadow Color:</label>
-                                <input type="color" id="heading-shadow-color" name="heading-shadow-color"
-                                    value="#000000" />
-                            </div>
-                        </div>
-                        <!-- Bold Toggle for Heading -->
-                        <div class="option-row">
-                            <label for="heading-bold-toggle">Bold:</label>
-                            <input type="checkbox" id="heading-bold-toggle" checked />
-                        </div>
-                    </div>
-
-                    <hr class="hr-sub">
-
-                    <!-- Text Styling for Description -->
-                    <div class="text-style-options">
-                        <h4 class="option-sub-heading">Description Text Styling</h4>
-
-                        <!-- Slider for Fallback Description Position -->
-                        <div class="option-row">
-                            <label for="description-position-slider">Position:</label>
-                            <input type="range" id="description-position-slider" name="description-position-slider"
-                                min="0" max="100" value="30" />
-                            <span id="description-position-value">30%</span>
-                        </div>
-
-                        <!-- Text Color Picker -->
-                        <div class="option-row">
-                            <label for="description-text-color">Text Color:</label>
-                            <input type="color" id="description-text-color" name="description-text-color"
-                                value="#ffffff" />
-                        </div>
-
-                        <!-- Drop Shadow Controls -->
-                        <div class="text-style-options">
-                            <h5>Drop Shadow</h5>
-                            <div class="option-row">
-                                <label for="description-drop-shadow-toggle">Enable Drop Shadow</label>
-                                <input type="checkbox" id="description-drop-shadow-toggle" />
-                            </div>
-                            <div class="option-row">
-                                <label>Offset X:</label>
-                                <input type="number" id="description-shadow-offset-x" name="description-shadow-offset-x" min="0"
-                                    value="2" />
-                                <label>Offset Y:</label>
-                                <input type="number" id="description-shadow-offset-y" name="description-shadow-offset-y" min="0"
-                                    value="2" />
-                            </div>
-                            <div class="option-row">
-                                <label for="description-shadow-blur">Blur (px):</label>
-                                <input type="number" id="description-shadow-blur" name="description-shadow-blur" min="0"
-                                    value="4" />
-                            </div>
-                            <div class="option-row">
-                                <label for="description-shadow-color">Shadow Color:</label>
-                                <input type="color" id="description-shadow-color" name="description-shadow-color"
-                                    value="#000000" />
-                            </div>
-                        </div>
-                        <!-- Bold Toggle for Description -->
-                        <div class="option-row">
-                            <label for="description-bold-toggle">Bold:</label>
-                            <input type="checkbox" id="description-bold-toggle" />
-                        </div>
-                    </div>
-
-                    <hr class="hr-sub">
-
-                    <!-- Slider for Accept Button Vertical Position -->
-                    <div class="option-row">
-                        <h4 class="option-sub-heading">Button Positions</h4>
-                    </div>
-                    <div class="option-row">
-                        <label for="accept-button-vertical-slider">Accept Position:</label>
-                        <input type="range" id="accept-button-vertical-slider" name="accept-button-vertical-slider"
-                            min="0" max="100" value="85" />
-                        <span id="accept-button-vertical-value">85%</span>
-                    </div>
+                <!-- Tab Navigation -->
+                <div class="tab-navigation">
+                    <button class="tab-btn active" data-tab="tab-text">Text</button>
+                    <button class="tab-btn inactive" data-tab="tab-buttons">Button</button>
+                    <button class="tab-btn inactive" data-tab="tab-output">Output</button>
                 </div>
 
                 <hr class="hr-main">
 
-                <!------------ Post-Accept Phase Sliders ------------>
-                <div id="post-accept-sliders" class="post-accept-sliders">
-                    <h3 class="option-heading">Post-Accept Phase Settings</h3>
-                    <hr class="hr-sub">
+                <div id="tab-text" class="options-tab">
+                    <!-- ==========================================
+                     INITIAL PHASE SLIDERS (Heading & Description)
+                     =========================================== -->
+                    <div id="initial-phase-sliders">
+                        <h3 class="option-heading">Initial Phase Settings</h3>
 
-                    <!-- Text Styling for Post-Accept Heading -->
-                    <div class="text-style-options">
-                        <h4 class="option-sub-heading">Post-Accept Heading Text Styling</h4>
-
-                        <!-- Slider for Post-Accept Fallback Heading Position -->
-                        <div class="option-row">
-                            <label for="post-accept-heading-position-slider">Position:</label>
-                            <input type="range" id="post-accept-heading-position-slider"
-                                name="post-accept-heading-position-slider" min="0" max="100" value="15" />
-                            <span id="post-accept-heading-position-value">15%</span>
-                        </div>
-
-                        <!-- Text Color Picker -->
-                        <div class="option-row">
-                            <label for="post-accept-heading-text-color">Text Color:</label>
-                            <input type="color" id="post-accept-heading-text-color"
-                                name="post-accept-heading-text-color" value="#ffffff" />
-                        </div>
-
-                        <!-- Drop Shadow Controls -->
+                        <hr class="hr-sub">
+                        <!-- Text Styling for Heading -->
                         <div class="text-style-options">
-                            <h5>Drop Shadow</h5>
+                            <h4 class="option-sub-heading">Heading Text Styling</h4>
+                            <!-- Slider for Fallback Heading Position -->
                             <div class="option-row">
-                                <label for="post-accept-heading-drop-shadow-toggle">Enable Drop Shadow</label>
-                                <input type="checkbox" id="post-accept-heading-drop-shadow-toggle" />
+                                <label for="heading-position-slider">Position:</label>
+                                <input type="range" id="heading-position-slider" name="heading-position-slider" min="0"
+                                    max="100" value="10" />
+                                <span id="heading-position-value">10%</span>
                             </div>
+
+                            <!-- **New** Slider for Fallback Heading Width -->
                             <div class="option-row">
-                                <label>Offset X:</label>
-                                <input type="number" id="post-accept-heading-shadow-offset-x" name="post-accept-heading-shadow-offset-x" min="0"
-                                    value="2" />
-                                <label>Offset Y:</label>
-                                <input type="number" id="post-accept-heading-shadow-offset-y" name="post-accept-heading-shadow-offset-y" min="0"
-                                    value="2" />
+                                <label for="heading-width-slider">Width:</label>
+                                <input type="range" id="heading-width-slider" name="heading-width-slider" min="0"
+                                    max="100" value="80" />
+                                <span id="heading-width-value">80%</span>
                             </div>
+
+                            <!-- Text Color Picker -->
                             <div class="option-row">
-                                <label for="post-accept-heading-shadow-blur">Blur (px):</label>
-                                <input type="number" id="post-accept-heading-shadow-blur" name="post-accept-heading-shadow-blur" min="0"
-                                    value="4" />
+                                <label for="heading-text-color">Text Color:</label>
+                                <input type="color" id="heading-text-color" name="heading-text-color" value="#ffffff" />
                             </div>
+
+                            <!-- Drop Shadow Controls -->
+                            <div class="shadow-controls">
+                                <h5>Drop Shadow</h5>
+                                <div class="option-row">
+                                    <label for="heading-drop-shadow-toggle">Enable Drop Shadow</label>
+                                    <input type="checkbox" id="heading-drop-shadow-toggle" />
+                                </div>
+                                <div class="option-row">
+                                    <label>Offset X:</label>
+                                    <input type="number" id="heading-shadow-offset-x" name="heading-shadow-offset-x"
+                                        min="0" value="2" />
+                                    <label>Offset Y:</label>
+                                    <input type="number" id="heading-shadow-offset-y" name="heading-shadow-offset-y"
+                                        min="0" value="2" />
+                                </div>
+                                <div class="option-row">
+                                    <label for="heading-shadow-blur">Blur (px):</label>
+                                    <input type="number" id="heading-shadow-blur" name="heading-shadow-blur" min="0"
+                                        value="4" />
+                                </div>
+                                <div class="option-row">
+                                    <label for="heading-shadow-color">Shadow Color:</label>
+                                    <input type="color" id="heading-shadow-color" name="heading-shadow-color"
+                                        value="#000000" />
+                                </div>
+                            </div>
+                            <!-- Bold Toggle for Heading -->
                             <div class="option-row">
-                                <label for="post-accept-heading-shadow-color">Shadow Color:</label>
-                                <input type="color" id="post-accept-heading-shadow-color"
-                                    name="post-accept-heading-shadow-color" value="#000000" />
+                                <label for="heading-bold-toggle">Bold:</label>
+                                <input type="checkbox" id="heading-bold-toggle" checked />
                             </div>
                         </div>
-                        <!-- Bold Toggle for Post-Accept Heading -->
-                        <div class="option-row">
-                            <label for="post-accept-heading-bold-toggle">Bold:</label>
-                            <input type="checkbox" id="post-accept-heading-bold-toggle" checked />
-                        </div>
-                    </div>
 
-                    <hr class="hr-sub">
+                        <hr class="hr-sub">
 
-                    <!-- Text Styling for Post-Accept Description -->
-                    <div class="text-style-options">
-                        <h4 class="option-sub-heading">Post-Accept Description Text Styling</h4>
-
-                        <!-- Slider for Post-Accept Fallback Description Position -->
-                        <div class="option-row">
-                            <label for="post-accept-description-position-slider">Position:</label>
-                            <input type="range" id="post-accept-description-position-slider"
-                                name="post-accept-description-position-slider" min="0" max="100" value="35" />
-                            <span id="post-accept-description-position-value">35%</span>
-                        </div>
-
-                        <!-- Text Color Picker -->
-                        <div class="option-row">
-                            <label for="post-accept-description-text-color">Text Color:</label>
-                            <input type="color" id="post-accept-description-text-color"
-                                name="post-accept-description-text-color" value="#ffffff" />
-                        </div>
-
-                        <!-- Drop Shadow Controls -->
+                        <!-- Text Styling for Description -->
                         <div class="text-style-options">
-                            <h5>Drop Shadow</h5>
+                            <h4 class="option-sub-heading">Description Text Styling</h4>
+
+                            <!-- Slider for Fallback Description Position -->
                             <div class="option-row">
-                                <label for="post-accept-description-drop-shadow-toggle">Enable Drop Shadow</label>
-                                <input type="checkbox" id="post-accept-description-drop-shadow-toggle" />
+                                <label for="description-position-slider">Position:</label>
+                                <input type="range" id="description-position-slider" name="description-position-slider"
+                                    min="0" max="100" value="30" />
+                                <span id="description-position-value">30%</span>
                             </div>
+
+                            <!-- **New** Slider for Fallback Description Width -->
                             <div class="option-row">
-                                <label>Offset X:</label>
-                                <input type="number" id="post-accept-description-shadow-offset-x" name="post-accept-description-shadow-offset-x" min="0"
-                                    value="2" />
-                                <label>Offset Y:</label>
-                                <input type="number" id="post-accept-description-shadow-offset-y" name="post-accept-description-shadow-offset-y" min="0"
-                                    value="2" />
+                                <label for="description-width-slider">Width:</label>
+                                <input type="range" id="description-width-slider" name="description-width-slider"
+                                    min="0" max="100" value="60" />
+                                <span id="description-width-value">60%</span>
                             </div>
+
+                            <!-- Text Color Picker -->
                             <div class="option-row">
-                                <label for="post-accept-description-shadow-blur">Blur (px):</label>
-                                <input type="number" id="post-accept-description-shadow-blur" name="post-accept-description-shadow-blur" min="0"
-                                    value="4" />
+                                <label for="description-text-color">Text Color:</label>
+                                <input type="color" id="description-text-color" name="description-text-color"
+                                    value="#ffffff" />
                             </div>
+
+                            <!-- Drop Shadow Controls -->
+                            <div class="shadow-controls">
+                                <h5>Drop Shadow</h5>
+                                <div class="option-row">
+                                    <label for="description-drop-shadow-toggle">Enable Drop Shadow</label>
+                                    <input type="checkbox" id="description-drop-shadow-toggle" />
+                                </div>
+                                <div class="option-row">
+                                    <label>Offset X:</label>
+                                    <input type="number" id="description-shadow-offset-x"
+                                        name="description-shadow-offset-x" min="0" value="2" />
+                                    <label>Offset Y:</label>
+                                    <input type="number" id="description-shadow-offset-y"
+                                        name="description-shadow-offset-y" min="0" value="2" />
+                                </div>
+                                <div class="option-row">
+                                    <label for="description-shadow-blur">Blur (px):</label>
+                                    <input type="number" id="description-shadow-blur" name="description-shadow-blur"
+                                        min="0" value="4" />
+                                </div>
+                                <div class="option-row">
+                                    <label for="description-shadow-color">Shadow Color:</label>
+                                    <input type="color" id="description-shadow-color" name="description-shadow-color"
+                                        value="#000000" />
+                                </div>
+                            </div>
+                            <!-- Bold Toggle for Description -->
                             <div class="option-row">
-                                <label for="post-accept-description-shadow-color">Shadow Color:</label>
-                                <input type="color" id="post-accept-description-shadow-color"
-                                    name="post-accept-description-shadow-color" value="#000000" />
+                                <label for="description-bold-toggle">Bold:</label>
+                                <input type="checkbox" id="description-bold-toggle" />
                             </div>
-                        </div>
-                        <!-- Bold Toggle for Post-Accept Description -->
-                        <div class="option-row">
-                            <label for="post-accept-description-bold-toggle">Bold:</label>
-                            <input type="checkbox" id="post-accept-description-bold-toggle" />
                         </div>
                     </div>
 
-                    <hr class="hr-sub">
 
-                    <!-- Text Styling for Post-Accept Prize -->
-                    <div class="text-style-options">
-                        <h4 class="option-sub-heading">Post-Accept Prize Text Styling</h4>
+                    <!-- ==========================================
+                     POST-ACCEPT PHASE SLIDERS (Heading, Description, Prize)
+                     =========================================== -->
+                    <div id="post-accept-sliders" class="post-accept-sliders">
+                        <h3 class="option-heading">Post-Accept Phase Settings</h3>
+                        <hr class="hr-sub">
 
-                        <!-- Slider for Post-Accept Fallback Prize Position -->
-                        <div class="option-row">
-                            <label for="post-accept-prize-position-slider">Position:</label>
-                            <input type="range" id="post-accept-prize-position-slider"
-                                name="post-accept-prize-position-slider" min="0" max="100" value="55" />
-                            <span id="post-accept-prize-position-value">55%</span>
-                        </div>
-
-                        <!-- Text Color Picker -->
-                        <div class="option-row">
-                            <label for="post-accept-prize-text-color">Text Color:</label>
-                            <input type="color" id="post-accept-prize-text-color" name="post-accept-prize-text-color"
-                                value="#ffffff" />
-                        </div>
-
-                        <!-- Drop Shadow Controls -->
+                        <!-- Text Styling for Post-Accept Heading -->
                         <div class="text-style-options">
-                            <h5>Drop Shadow</h5>
+                            <h4 class="option-sub-heading">Post-Accept Heading Text Styling</h4>
+
+                            <!-- Slider for Post-Accept Fallback Heading Position -->
                             <div class="option-row">
-                                <label for="post-accept-prize-drop-shadow-toggle">Enable Drop Shadow</label>
-                                <input type="checkbox" id="post-accept-prize-drop-shadow-toggle" />
+                                <label for="post-accept-heading-position-slider">Position:</label>
+                                <input type="range" id="post-accept-heading-position-slider"
+                                    name="post-accept-heading-position-slider" min="0" max="100" value="15" />
+                                <span id="post-accept-heading-position-value">15%</span>
                             </div>
+
+                            <!-- **New** Slider for Post-Accept Fallback Heading Width -->
                             <div class="option-row">
-                                <label>Offset X:</label>
-                                <input type="number" id="post-accept-prize-shadow-offset-x" name="post-accept-prize-shadow-offset-x" min="0"
-                                    value="2" />
-                                <label>Offset Y:</label>
-                                <input type="number" id="post-accept-prize-shadow-offset-y" name="post-accept-prize-shadow-offset-y" min="0"
-                                    value="2" />
+                                <label for="post-accept-heading-width-slider">Width:</label>
+                                <input type="range" id="post-accept-heading-width-slider"
+                                    name="post-accept-heading-width-slider" min="0" max="100" value="80" />
+                                <span id="post-accept-heading-width-value">80%</span>
                             </div>
+
+                            <!-- Text Color Picker -->
                             <div class="option-row">
-                                <label for="post-accept-prize-shadow-blur">Blur (px):</label>
-                                <input type="number" id="post-accept-prize-shadow-blur" name="post-accept-prize-shadow-blur" min="0"
-                                    value="4" />
+                                <label for="post-accept-heading-text-color">Text Color:</label>
+                                <input type="color" id="post-accept-heading-text-color"
+                                    name="post-accept-heading-text-color" value="#ffffff" />
                             </div>
+
+                            <!-- Drop Shadow Controls -->
+                            <div class="shadow-controls">
+                                <h5>Drop Shadow</h5>
+                                <div class="option-row">
+                                    <label for="post-accept-heading-drop-shadow-toggle">Enable Drop Shadow</label>
+                                    <input type="checkbox" id="post-accept-heading-drop-shadow-toggle" />
+                                </div>
+                                <div class="option-row">
+                                    <label>Offset X:</label>
+                                    <input type="number" id="post-accept-heading-shadow-offset-x"
+                                        name="post-accept-heading-shadow-offset-x" min="0" value="2" />
+                                    <label>Offset Y:</label>
+                                    <input type="number" id="post-accept-heading-shadow-offset-y"
+                                        name="post-accept-heading-shadow-offset-y" min="0" value="2" />
+                                </div>
+                                <div class="option-row">
+                                    <label for="post-accept-heading-shadow-blur">Blur (px):</label>
+                                    <input type="number" id="post-accept-heading-shadow-blur"
+                                        name="post-accept-heading-shadow-blur" min="0" value="4" />
+                                </div>
+                                <div class="option-row">
+                                    <label for="post-accept-heading-shadow-color">Shadow Color:</label>
+                                    <input type="color" id="post-accept-heading-shadow-color"
+                                        name="post-accept-heading-shadow-color" value="#000000" />
+                                </div>
+                            </div>
+                            <!-- Bold Toggle for Post-Accept Heading -->
                             <div class="option-row">
-                                <label for="post-accept-prize-shadow-color">Shadow Color:</label>
-                                <input type="color" id="post-accept-prize-shadow-color"
-                                    name="post-accept-prize-shadow-color" value="#000000" />
+                                <label for="post-accept-heading-bold-toggle">Bold:</label>
+                                <input type="checkbox" id="post-accept-heading-bold-toggle" checked />
                             </div>
                         </div>
-                        <!-- Bold Toggle for Post-Accept Prize -->
-                        <div class="option-row">
-                            <label for="post-accept-prize-bold-toggle">Bold:</label>
-                            <input type="checkbox" id="post-accept-prize-bold-toggle" />
+
+                        <hr class="hr-sub">
+
+                        <!-- Text Styling for Post-Accept Description -->
+                        <div class="text-style-options">
+                            <h4 class="option-sub-heading">Post-Accept Description Text Styling</h4>
+
+                            <!-- Slider for Post-Accept Fallback Description Position -->
+                            <div class="option-row">
+                                <label for="post-accept-description-position-slider">Position:</label>
+                                <input type="range" id="post-accept-description-position-slider"
+                                    name="post-accept-description-position-slider" min="0" max="100" value="35" />
+                                <span id="post-accept-description-position-value">35%</span>
+                            </div>
+
+                            <!-- **New** Slider for Post-Accept Fallback Description Width -->
+                            <div class="option-row">
+                                <label for="post-accept-description-width-slider">Width:</label>
+                                <input type="range" id="post-accept-description-width-slider"
+                                    name="post-accept-description-width-slider" min="0" max="100" value="60" />
+                                <span id="post-accept-description-width-value">60%</span>
+                            </div>
+
+                            <!-- Text Color Picker -->
+                            <div class="option-row">
+                                <label for="post-accept-description-text-color">Text Color:</label>
+                                <input type="color" id="post-accept-description-text-color"
+                                    name="post-accept-description-text-color" value="#ffffff" />
+                            </div>
+
+                            <!-- Drop Shadow Controls -->
+                            <div class="shadow-controls">
+                                <h5>Drop Shadow</h5>
+                                <div class="option-row">
+                                    <label for="post-accept-description-drop-shadow-toggle">Enable Drop Shadow</label>
+                                    <input type="checkbox" id="post-accept-description-drop-shadow-toggle" />
+                                </div>
+                                <div class="option-row">
+                                    <label>Offset X:</label>
+                                    <input type="number" id="post-accept-description-shadow-offset-x"
+                                        name="post-accept-description-shadow-offset-x" min="0" value="2" />
+                                    <label>Offset Y:</label>
+                                    <input type="number" id="post-accept-description-shadow-offset-y"
+                                        name="post-accept-description-shadow-offset-y" min="0" value="2" />
+                                </div>
+                                <div class="option-row">
+                                    <label for="post-accept-description-shadow-blur">Blur (px):</label>
+                                    <input type="number" id="post-accept-description-shadow-blur"
+                                        name="post-accept-description-shadow-blur" min="0" value="4" />
+                                </div>
+                                <div class="option-row">
+                                    <label for="post-accept-description-shadow-color">Shadow Color:</label>
+                                    <input type="color" id="post-accept-description-shadow-color"
+                                        name="post-accept-description-shadow-color" value="#000000" />
+                                </div>
+                            </div>
+                            <!-- Bold Toggle for Post-Accept Description -->
+                            <div class="option-row">
+                                <label for="post-accept-description-bold-toggle">Bold:</label>
+                                <input type="checkbox" id="post-accept-description-bold-toggle" />
+                            </div>
                         </div>
-                    </div>
 
-                    <hr class="hr-sub">
-                    <div class="option-row">
-                        <h4 class="option-sub-heading">Post-Accept Button Positions</h4>
-                    </div>
-                    <!-- Slider for Play Now Button Vertical Position -->
-                    <div class="option-row">
-                        <label for="post-accept-play-now-button-vertical-slider">Play Now Position:</label>
-                        <input type="range" id="post-accept-play-now-button-vertical-slider"
-                            name="post-accept-play-now-button-vertical-slider" min="0" max="100" value="82" />
-                        <span id="post-accept-play-now-button-vertical-value">82%</span>
-                    </div>
+                        <hr class="hr-sub">
 
-                    <!-- Slider for Play Later Button Vertical Position -->
-                    <div class="option-row">
-                        <label for="post-accept-play-later-button-vertical-slider">Play Later Position:</label>
-                        <input type="range" id="post-accept-play-later-button-vertical-slider"
-                            name="post-accept-play-later-button-vertical-slider" min="0" max="100" value="90" />
-                        <span id="post-accept-play-later-button-vertical-value">90%</span>
-                    </div>
+                        <!-- Text Styling for Post-Accept Prize -->
+                        <div class="text-style-options">
+                            <h4 class="option-sub-heading">Post-Accept Prize Text Styling</h4>
 
-                    <!-- Slider for Continue Button Vertical Position -->
-                    <div class="option-row">
-                        <label for="post-accept-continue-button-vertical-slider">Continue Position:</label>
-                        <input type="range" id="post-accept-continue-button-vertical-slider"
-                            name="post-accept-continue-button-vertical-slider" min="0" max="100" value="85" />
-                        <span id="post-accept-continue-button-vertical-value">85%</span>
+                            <!-- Slider for Post-Accept Fallback Prize Position -->
+                            <div class="option-row">
+                                <label for="post-accept-prize-position-slider">Position:</label>
+                                <input type="range" id="post-accept-prize-position-slider"
+                                    name="post-accept-prize-position-slider" min="0" max="100" value="55" />
+                                <span id="post-accept-prize-position-value">55%</span>
+                            </div>
+
+                            <!-- **New** Slider for Post-Accept Fallback Prize Width -->
+                            <div class="option-row">
+                                <label for="post-accept-prize-width-slider">Width:</label>
+                                <input type="range" id="post-accept-prize-width-slider"
+                                    name="post-accept-prize-width-slider" min="0" max="100" value="70" />
+                                <span id="post-accept-prize-width-value">70%</span>
+                            </div>
+
+                            <!-- Text Color Picker -->
+                            <div class="option-row">
+                                <label for="post-accept-prize-text-color">Text Color:</label>
+                                <input type="color" id="post-accept-prize-text-color"
+                                    name="post-accept-prize-text-color" value="#ffffff" />
+                            </div>
+
+                            <!-- Drop Shadow Controls -->
+                            <div class="shadow-controls">
+                                <h5>Drop Shadow</h5>
+                                <div class="option-row">
+                                    <label for="post-accept-prize-drop-shadow-toggle">Enable Drop Shadow</label>
+                                    <input type="checkbox" id="post-accept-prize-drop-shadow-toggle" />
+                                </div>
+                                <div class="option-row">
+                                    <label>Offset X:</label>
+                                    <input type="number" id="post-accept-prize-shadow-offset-x"
+                                        name="post-accept-prize-shadow-offset-x" min="0" value="2" />
+                                    <label>Offset Y:</label>
+                                    <input type="number" id="post-accept-prize-shadow-offset-y"
+                                        name="post-accept-prize-shadow-offset-y" min="0" value="2" />
+                                </div>
+                                <div class="option-row">
+                                    <label for="post-accept-prize-shadow-blur">Blur (px):</label>
+                                    <input type="number" id="post-accept-prize-shadow-blur"
+                                        name="post-accept-prize-shadow-blur" min="0" value="4" />
+                                </div>
+                                <div class="option-row">
+                                    <label for="post-accept-prize-shadow-color">Shadow Color:</label>
+                                    <input type="color" id="post-accept-prize-shadow-color"
+                                        name="post-accept-prize-shadow-color" value="#000000" />
+                                </div>
+                            </div>
+                            <!-- Bold Toggle for Post-Accept Prize -->
+                            <div class="option-row">
+                                <label for="post-accept-prize-bold-toggle">Bold:</label>
+                                <input type="checkbox" id="post-accept-prize-bold-toggle" />
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <hr class="hr-main">
 
-                <!-- Action Buttons -->
-                <button id="randomize-text-button">Randomize Text</button>
-                <button id="set-max-chars-button">Set Max Chars</button>
-            
+                <div id="tab-buttons" class="options-tab">
+                    <!-- ==========================================
+                     BUTTON STYLE CUSTOMIZATION
+                     =========================================== -->
+                    <h3 class="option-heading">Button Style Options</h3>
+
+                    <!-- ACCEPT BUTTON OPTIONS -->
+                    <div class="text-style-options">
+                        <h4 class="option-sub-heading">Accept Button Style</h4>
+
+                        <!-- ACCEPT BUTTON VERTICAL POSITION -->
+                        <div class="option-row">
+                            <label for="accept-button-vertical-slider">Vertical Position:</label>
+                            <input type="range" id="accept-button-vertical-slider" name="accept-button-vertical-slider"
+                                min="0" max="100" value="85" />
+                            <span id="accept-button-vertical-value">85%</span>
+                        </div>
+
+                        <!-- Background Color -->
+                        <div class="option-row">
+                            <label for="accept-button-bg-color">Background Color:</label>
+                            <input type="color" id="accept-button-bg-color" value="#444444" />
+                        </div>
+
+                        <!-- Foreground (Text) Color -->
+                        <div class="option-row">
+                            <label for="accept-button-fg-color">Foreground (Text) Color:</label>
+                            <input type="color" id="accept-button-fg-color" value="#ffffff" />
+                        </div>
+
+                        <!-- Bold Toggle -->
+                        <div class="option-row">
+                            <label for="accept-button-bold-toggle">Bold:</label>
+                            <input type="checkbox" id="accept-button-bold-toggle" />
+                        </div>
+
+                        <!-- Border Color -->
+                        <div class="option-row">
+                            <label for="accept-button-border-color">Border Color:</label>
+                            <input type="color" id="accept-button-border-color" value="#ffffff" />
+                        </div>
+
+                        <!-- Border Width -->
+                        <div class="option-row">
+                            <label for="accept-button-border-width">Border Width (px):</label>
+                            <input type="number" id="accept-button-border-width" value="2" min="0" />
+                        </div>
+
+                        <!-- Border Radius -->
+                        <div class="option-row">
+                            <label for="accept-button-border-radius">Border Radius (px):</label>
+                            <input type="number" id="accept-button-border-radius" value="5" min="0" />
+                        </div>
+
+                        <!-- Text Shadow Controls -->
+                        <div class="shadow-controls">
+                            <h5>Text Shadow</h5>
+                            <div class="option-row">
+                                <label for="accept-button-shadow-toggle">Enable Text Shadow</label>
+                                <input type="checkbox" id="accept-button-shadow-toggle" />
+                            </div>
+                            <div class="option-row">
+                                <label>Offset X:</label>
+                                <input type="number" id="accept-button-shadow-offset-x"
+                                    name="accept-button-shadow-offset-x" min="0" value="2" />
+                                <label>Offset Y:</label>
+                                <input type="number" id="accept-button-shadow-offset-y"
+                                    name="accept-button-shadow-offset-y" min="0" value="2" />
+                            </div>
+                            <div class="option-row">
+                                <label for="accept-button-shadow-blur">Blur (px):</label>
+                                <input type="number" id="accept-button-shadow-blur" name="accept-button-shadow-blur"
+                                    min="0" value="4" />
+                            </div>
+                            <div class="option-row">
+                                <label for="accept-button-shadow-color">Shadow Color:</label>
+                                <input type="color" id="accept-button-shadow-color" name="accept-button-shadow-color"
+                                    value="#000000" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="hr-sub">
+
+                    <!-- PLAY NOW BUTTON OPTIONS -->
+                    <div class="text-style-options">
+                        <h4 class="option-sub-heading">Play Now Button Style</h4>
+
+                        <!-- PLAY NOW BUTTON VERTICAL POSITION -->
+                        <div class="option-row">
+                            <label for="post-accept-play-now-button-vertical-slider">Vertical Position:</label>
+                            <input type="range" id="post-accept-play-now-button-vertical-slider"
+                                name="post-accept-play-now-button-vertical-slider" min="0" max="100" value="82" />
+                            <span id="post-accept-play-now-button-vertical-value">82%</span>
+                        </div>
+
+                        <!-- Background Color -->
+                        <div class="option-row">
+                            <label for="play-now-button-bg-color">Background Color:</label>
+                            <input type="color" id="play-now-button-bg-color" value="#444444" />
+                        </div>
+
+                        <!-- Foreground (Text) Color -->
+                        <div class="option-row">
+                            <label for="play-now-button-fg-color">Foreground (Text) Color:</label>
+                            <input type="color" id="play-now-button-fg-color" value="#ffffff" />
+                        </div>
+
+                        <!-- Bold Toggle -->
+                        <div class="option-row">
+                            <label for="play-now-button-bold-toggle">Bold:</label>
+                            <input type="checkbox" id="play-now-button-bold-toggle" />
+                        </div>
+
+                        <!-- Border Color -->
+                        <div class="option-row">
+                            <label for="play-now-button-border-color">Border Color:</label>
+                            <input type="color" id="play-now-button-border-color" value="#ffffff" />
+                        </div>
+
+                        <!-- Border Width -->
+                        <div class="option-row">
+                            <label for="play-now-button-border-width">Border Width (px):</label>
+                            <input type="number" id="play-now-button-border-width" value="2" min="0" />
+                        </div>
+
+                        <!-- Border Radius -->
+                        <div class="option-row">
+                            <label for="play-now-button-border-radius">Border Radius (px):</label>
+                            <input type="number" id="play-now-button-border-radius" value="5" min="0" />
+                        </div>
+
+                        <!-- Text Shadow Controls -->
+                        <div class="shadow-controls">
+                            <h5>Text Shadow</h5>
+                            <div class="option-row">
+                                <label for="play-now-button-shadow-toggle">Enable Text Shadow</label>
+                                <input type="checkbox" id="play-now-button-shadow-toggle" />
+                            </div>
+                            <div class="option-row">
+                                <label>Offset X:</label>
+                                <input type="number" id="play-now-button-shadow-offset-x"
+                                    name="play-now-button-shadow-offset-x" min="0" value="2" />
+                                <label>Offset Y:</label>
+                                <input type="number" id="play-now-button-shadow-offset-y"
+                                    name="play-now-button-shadow-offset-y" min="0" value="2" />
+                            </div>
+                            <div class="option-row">
+                                <label for="play-now-button-shadow-blur">Blur (px):</label>
+                                <input type="number" id="play-now-button-shadow-blur" name="play-now-button-shadow-blur"
+                                    min="0" value="4" />
+                            </div>
+                            <div class="option-row">
+                                <label for="play-now-button-shadow-color">Shadow Color:</label>
+                                <input type="color" id="play-now-button-shadow-color"
+                                    name="play-now-button-shadow-color" value="#000000" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="hr-sub">
+
+                    <!-- PLAY LATER BUTTON OPTIONS -->
+                    <div class="text-style-options">
+                        <h4 class="option-sub-heading">Play Later Button Style</h4>
+
+                        <!-- PLAY LATER BUTTON VERTICAL POSITION -->
+                        <div class="option-row">
+                            <label for="post-accept-play-later-button-vertical-slider">Vertical Position:</label>
+                            <input type="range" id="post-accept-play-later-button-vertical-slider"
+                                name="post-accept-play-later-button-vertical-slider" min="0" max="100" value="90" />
+                            <span id="post-accept-play-later-button-vertical-value">90%</span>
+                        </div>
+
+                        <!-- Background Color -->
+                        <div class="option-row">
+                            <label for="play-later-button-bg-color">Background Color:</label>
+                            <input type="color" id="play-later-button-bg-color" value="#444444" />
+                        </div>
+
+                        <!-- Foreground (Text) Color -->
+                        <div class="option-row">
+                            <label for="play-later-button-fg-color">Foreground (Text) Color:</label>
+                            <input type="color" id="play-later-button-fg-color" value="#ffffff" />
+                        </div>
+
+                        <!-- Bold Toggle -->
+                        <div class="option-row">
+                            <label for="play-later-button-bold-toggle">Bold:</label>
+                            <input type="checkbox" id="play-later-button-bold-toggle" />
+                        </div>
+
+                        <!-- Border Color -->
+                        <div class="option-row">
+                            <label for="play-later-button-border-color">Border Color:</label>
+                            <input type="color" id="play-later-button-border-color" value="#ffffff" />
+                        </div>
+
+                        <!-- Border Width -->
+                        <div class="option-row">
+                            <label for="play-later-button-border-width">Border Width (px):</label>
+                            <input type="number" id="play-later-button-border-width" value="2" min="0" />
+                        </div>
+
+                        <!-- Border Radius -->
+                        <div class="option-row">
+                            <label for="play-later-button-border-radius">Border Radius (px):</label>
+                            <input type="number" id="play-later-button-border-radius" value="5" min="0" />
+                        </div>
+
+                        <!-- Text Shadow Controls -->
+                        <div class="shadow-controls">
+                            <h5>Text Shadow</h5>
+                            <div class="option-row">
+                                <label for="play-later-button-shadow-toggle">Enable Text Shadow</label>
+                                <input type="checkbox" id="play-later-button-shadow-toggle" />
+                            </div>
+                            <div class="option-row">
+                                <label>Offset X:</label>
+                                <input type="number" id="play-later-button-shadow-offset-x"
+                                    name="play-later-button-shadow-offset-x" min="0" value="2" />
+                                <label>Offset Y:</label>
+                                <input type="number" id="play-later-button-shadow-offset-y"
+                                    name="play-later-button-shadow-offset-y" min="0" value="2" />
+                            </div>
+                            <div class="option-row">
+                                <label for="play-later-button-shadow-blur">Blur (px):</label>
+                                <input type="number" id="play-later-button-shadow-blur"
+                                    name="play-later-button-shadow-blur" min="0" value="4" />
+                            </div>
+                            <div class="option-row">
+                                <label for="play-later-button-shadow-color">Shadow Color:</label>
+                                <input type="color" id="play-later-button-shadow-color"
+                                    name="play-later-button-shadow-color" value="#000000" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="hr-sub">
+
+                    <!-- CONTINUE BUTTON OPTIONS -->
+                    <div class="text-style-options">
+                        <h4 class="option-sub-heading">Continue Button Style</h4>
+
+                        <!-- CONTINUE BUTTON VERTICAL POSITION -->
+                        <div class="option-row">
+                            <label for="post-accept-continue-button-vertical-slider">Vertical Position:</label>
+                            <input type="range" id="post-accept-continue-button-vertical-slider"
+                                name="post-accept-continue-button-vertical-slider" min="0" max="100" value="85" />
+                            <span id="post-accept-continue-button-vertical-value">85%</span>
+                        </div>
+
+                        <!-- Background Color -->
+                        <div class="option-row">
+                            <label for="continue-button-bg-color">Background Color:</label>
+                            <input type="color" id="continue-button-bg-color" value="#444444" />
+                        </div>
+
+                        <!-- Foreground (Text) Color -->
+                        <div class="option-row">
+                            <label for="continue-button-fg-color">Foreground (Text) Color:</label>
+                            <input type="color" id="continue-button-fg-color" value="#ffffff" />
+                        </div>
+
+                        <!-- Bold Toggle -->
+                        <div class="option-row">
+                            <label for="continue-button-bold-toggle">Bold:</label>
+                            <input type="checkbox" id="continue-button-bold-toggle" />
+                        </div>
+
+                        <!-- Border Color -->
+                        <div class="option-row">
+                            <label for="continue-button-border-color">Border Color:</label>
+                            <input type="color" id="continue-button-border-color" value="#ffffff" />
+                        </div>
+
+                        <!-- Border Width -->
+                        <div class="option-row">
+                            <label for="continue-button-border-width">Border Width (px):</label>
+                            <input type="number" id="continue-button-border-width" value="2" min="0" />
+                        </div>
+
+                        <!-- Border Radius -->
+                        <div class="option-row">
+                            <label for="continue-button-border-radius">Border Radius (px):</label>
+                            <input type="number" id="continue-button-border-radius" value="5" min="0" />
+                        </div>
+
+                        <!-- Text Shadow Controls -->
+                        <div class="shadow-controls">
+                            <h5>Text Shadow</h5>
+                            <div class="option-row">
+                                <label for="continue-button-shadow-toggle">Enable Text Shadow</label>
+                                <input type="checkbox" id="continue-button-shadow-toggle" />
+                            </div>
+                            <div class="option-row">
+                                <label>Offset X:</label>
+                                <input type="number" id="continue-button-shadow-offset-x"
+                                    name="continue-button-shadow-offset-x" min="0" value="2" />
+                                <label>Offset Y:</label>
+                                <input type="number" id="continue-button-shadow-offset-y"
+                                    name="continue-button-shadow-offset-y" min="0" value="2" />
+                            </div>
+                            <div class="option-row">
+                                <label for="continue-button-shadow-blur">Blur (px):</label>
+                                <input type="number" id="continue-button-shadow-blur" name="continue-button-shadow-blur"
+                                    min="0" value="4" />
+                            </div>
+                            <div class="option-row">
+                                <label for="continue-button-shadow-color">Shadow Color:</label>
+                                <input type="color" id="continue-button-shadow-color"
+                                    name="continue-button-shadow-color" value="#000000" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="tab-output" class="options-tab">
+                    <!-- Action Buttons -->
+                    <button id="randomize-text-button">Randomize Text</button>
+                    <button id="set-max-chars-button">Set Max Chars</button>
+                    <button id="export-style-button">Export Style</button>
+                </div>
+
             </div>
         </div>
     </div>
@@ -356,9 +690,8 @@
                 <div class="fallback-overlay" id="fallback-overlay">
                     <div class="fallback-text" id="fallback-text">
                         <p class="fallback-heading">Welcome to EA Fallback</p>
-                        <p class="fallback-description">This is a brief description of the fallback feature. It provides
-                            a seamless experience if primary systems fail.</p>
-                        <p class="fallback-prize" id="fallback-prize">Exclusive rewards await: Join now!</p>
+                        <p class="fallback-description">This is a brief description of the fallback feature. It provides a seamless experience if primary systems fail f the fallback feature. It provides a seamless experience if primary systems failf the fallback feature. It provides a seamless dawdfewdfw.</p>
+                        <p class="fallback-prize" id="fallback-prize">This is a brief description of the fallback feature. It provides a seamless experience if primary systems fail f the fallback feature. It provides a seamless experience if primary systems failf the fallback feature. It provides a seamless dawdfewdfw.</p>
                     </div>
                     <div class="fallback-buttons" id="fallback-buttons">
                         <button class="fallback-button-accept" id="fallback-button-accept">Accept</button>

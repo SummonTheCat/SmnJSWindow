@@ -1,14 +1,40 @@
+/* .\static\tool\fallbackcreator\ui.css */
+
 /* ============================================================
    CSS VARIABLES
    ============================================================ */
-   :root {
-    /* Text Position Variables - Initial Phase */
+   /* ============================================================
+   CSS VARIABLES
+   ============================================================ */
+:root {
+    /* ========================================================
+       TEXT POSITION VARIABLES - INITIAL PHASE
+       ======================================================== */
     --fallback-heading-top: 10%;
     --fallback-description-top: 30%;
-    /* Removed: --fallback-prize-top: 50%; */
     --fallback-button-accept-top: 25%;
 
-    /* Text Position Variables - Post-Accept Phase */
+    /* ========================================================
+       TEXT WIDTH VARIABLES - INITIAL PHASE
+       ======================================================== */
+    --fallback-heading-width: 80%; /* New */
+    --fallback-description-width: 60%; /* New */
+
+    /* ========================================================
+       TEXT FONTSIZE VARIABLES - POST-ACCEPT PHASE
+       ======================================================== */
+       /* Font Size Variables - Initial Phase */
+    --fallback-heading-font-size: 24px;
+    --fallback-description-font-size: 16px;
+
+    /* Font Size Variables - Post-Accept Phase */
+    --post-accept-fallback-heading-font-size: 24px;
+    --post-accept-fallback-description-font-size: 16px;
+    --post-accept-fallback-prize-font-size: 18px;
+
+    /* ========================================================
+       TEXT POSITION VARIABLES - POST-ACCEPT PHASE
+       ======================================================== */
     --post-accept-fallback-heading-top: 15%;
     --post-accept-fallback-description-top: 35%;
     --post-accept-fallback-prize-top: 55%;
@@ -16,10 +42,12 @@
     --post-accept-fallback-button-play-later-top: 90%;
     --post-accept-fallback-button-continue-top: 65%;
 
-    /* General Styling Variables */
-    --size-sml: 16px;
-    --color-background-03: #444;
-    --color-background-02: #666;
+    /* ========================================================
+       TEXT WIDTH VARIABLES - POST-ACCEPT PHASE
+       ======================================================== */
+    --post-accept-fallback-heading-width: 80%; /* New */
+    --post-accept-fallback-description-width: 60%; /* New */
+    --post-accept-fallback-prize-width: 70%; /* New */
 
     /* ========================================================
        PRE-ACCEPT PHASE STYLES
@@ -34,25 +62,62 @@
     --fallback-description-text-shadow: none;
     --fallback-description-font-weight: normal;
 
-    /* Pre-accept doesn't really use a "prize" by default. */
-
     /* ========================================================
        POST-ACCEPT PHASE STYLES
        ======================================================== */
-    /* Heading */
+    /* Post-Accept Heading */
     --post-accept-fallback-heading-color: #ffffff;
     --post-accept-fallback-heading-text-shadow: none;
     --post-accept-fallback-heading-font-weight: bold;
 
-    /* Description */
+    /* Post-Accept Description */
     --post-accept-fallback-description-color: #ffffff;
     --post-accept-fallback-description-text-shadow: none;
     --post-accept-fallback-description-font-weight: normal;
 
-    /* Prize */
+    /* Post-Accept Prize */
     --post-accept-fallback-prize-color: #ffffff;
     --post-accept-fallback-prize-text-shadow: none;
-    --post-accept-fallback-prize-font-weight: normal;
+    --post-accept-fallback-prize-font-weight: bold;
+
+    /* ========================================================
+       BUTTON STYLING VARIABLES
+       ======================================================== */
+    /* Accept Button */
+    --accept-button-bg: #444444;
+    --accept-button-fg: #ffffff;
+    --accept-button-border-color: #ffffff;
+    --accept-button-border-width: 2px;
+    --accept-button-text-shadow: none;
+    --accept-button-font-weight: normal;
+    --accept-button-border-radius: 5px;
+
+    /* Play Now Button */
+    --play-now-button-bg: #444444;
+    --play-now-button-fg: #ffffff;
+    --play-now-button-border-color: #ffffff;
+    --play-now-button-border-width: 2px;
+    --play-now-button-text-shadow: none;
+    --play-now-button-font-weight: normal;
+    --play-now-button-border-radius: 5px;
+
+    /* Play Later Button */
+    --play-later-button-bg: #444444;
+    --play-later-button-fg: #ffffff;
+    --play-later-button-border-color: #ffffff;
+    --play-later-button-border-width: 2px;
+    --play-later-button-text-shadow: none;
+    --play-later-button-font-weight: normal;
+    --play-later-button-border-radius: 5px;
+
+    /* Continue Button */
+    --continue-button-bg: #444444;
+    --continue-button-fg: #ffffff;
+    --continue-button-border-color: #ffffff;
+    --continue-button-border-width: 2px;
+    --continue-button-text-shadow: none;
+    --continue-button-font-weight: normal;
+    --continue-button-border-radius: 5px;
 }
 
 /* ============================================================
@@ -197,7 +262,7 @@
     position: absolute;
     width: 100%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%); /* Adjust both X and Y axes */
     text-align: center;
 }
 
@@ -208,6 +273,7 @@
     font-weight: var(--fallback-heading-font-weight);
     color: var(--fallback-heading-color);
     text-shadow: var(--fallback-heading-text-shadow);
+    width: var(--fallback-heading-width);
 }
 
 .fallback-description {
@@ -216,16 +282,26 @@
     font-weight: var(--fallback-description-font-weight);
     color: var(--fallback-description-color);
     text-shadow: var(--fallback-description-text-shadow);
+    
+    width: var(--fallback-description-width);
 }
 
-/* (No fallback-prize in pre-accept by default) */
+.fallback-text p {
+    margin: 0;
+    padding: 0;
+}
+
+/* (No fallback-prize shown in pre-accept by default) */
 .fallback-prize {
     top: var(--fallback-prize-top);
     font-size: 18px;
     font-weight: normal;
     color: #ffffff;
     text-shadow: none;
-    display: none; /* hidden in pre-accept */
+    display: none;
+    
+    width: var(--fallback-prize-width);
+    /* hidden in pre-accept */
 }
 
 /* ============================================================
@@ -237,6 +313,7 @@
     font-weight: var(--post-accept-fallback-heading-font-weight);
     color: var(--post-accept-fallback-heading-color);
     text-shadow: var(--post-accept-fallback-heading-text-shadow);
+    width: var(--post-accept-fallback-heading-width);
 }
 
 .post-accept .fallback-description {
@@ -245,6 +322,7 @@
     font-weight: var(--post-accept-fallback-description-font-weight);
     color: var(--post-accept-fallback-description-color);
     text-shadow: var(--post-accept-fallback-description-text-shadow);
+    width: var(--post-accept-fallback-description-width);
 }
 
 .post-accept .fallback-prize {
@@ -253,7 +331,8 @@
     font-weight: var(--post-accept-fallback-prize-font-weight);
     color: var(--post-accept-fallback-prize-color);
     text-shadow: var(--post-accept-fallback-prize-text-shadow);
-    display: block; /* show in post-accept */
+    display: block;
+    width: var(--post-accept-fallback-prize-width);
 }
 
 /* Play Now Button Position */
@@ -278,7 +357,7 @@
     position: absolute;
     padding: 10px 20px;
     border: none;
-    border-radius: var(--size-sml);
+    border-radius: var(--size-sml); /* This will be overridden by specific button styles */
     cursor: pointer;
     background-color: var(--color-background-03);
     color: white;
@@ -293,17 +372,45 @@
     background-color: var(--color-background-02);
 }
 
-/* Specific Buttons Positioning */
+/* Specific Buttons Positioning and Custom Styles */
 #fallback-button-accept {
     top: var(--fallback-button-accept-top);
+    background-color: var(--accept-button-bg);
+    color: var(--accept-button-fg);
+    border: var(--accept-button-border-width) solid var(--accept-button-border-color);
+    text-shadow: var(--accept-button-text-shadow);
+    font-weight: var(--accept-button-font-weight);
+    border-radius: var(--accept-button-border-radius); /* Added */
 }
 
 #fallback-button-play-now {
     top: var(--post-accept-fallback-button-play-now-top);
+    background-color: var(--play-now-button-bg);
+    color: var(--play-now-button-fg);
+    border: var(--play-now-button-border-width) solid var(--play-now-button-border-color);
+    text-shadow: var(--play-now-button-text-shadow);
+    font-weight: var(--play-now-button-font-weight);
+    border-radius: var(--play-now-button-border-radius); /* Added */
 }
 
 #fallback-button-play-later {
     top: var(--post-accept-fallback-button-play-later-top);
+    background-color: var(--play-later-button-bg);
+    color: var(--play-later-button-fg);
+    border: var(--play-later-button-border-width) solid var(--play-later-button-border-color);
+    text-shadow: var(--play-later-button-text-shadow);
+    font-weight: var(--play-later-button-font-weight);
+    border-radius: var(--play-later-button-border-radius); /* Added */
+}
+
+#fallback-button-continue {
+    top: var(--post-accept-fallback-button-continue-top);
+    background-color: var(--continue-button-bg);
+    color: var(--continue-button-fg);
+    border: var(--continue-button-border-width) solid var(--continue-button-border-color);
+    text-shadow: var(--continue-button-text-shadow);
+    font-weight: var(--continue-button-font-weight);
+    border-radius: var(--continue-button-border-radius); /* Added */
 }
 
 /* ============================================================
@@ -324,6 +431,10 @@
 /* Use Continue Button Enabled */
 .use-continue .fallback-button-continue {
     display: block;
+    top: var(--post-accept-fallback-button-continue-top);
+}
+
+.fallback-button-continue {
     top: var(--post-accept-fallback-button-continue-top);
 }
 
@@ -381,14 +492,13 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: var(--color-background-02);
     z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.3s ease;
 }
 
 .close-maximize {
@@ -404,6 +514,27 @@
     font-size: 28px;
     cursor: pointer;
     z-index: 1001;
+}
+
+/* When in maximized mode, let the .tool-content and .fallback fill the screen entirely */
+.preview-maximized .tool-content,
+.preview-maximized .fallback {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+    margin: 0;
+    padding: 0;
+}
+
+/* Ensure the fallback image is displayed at its natural size with no scaling */
+.preview-maximized .fallback-image {
+    width: auto !important;
+    height: auto !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    object-fit: unset;
 }
 
 /* ============================================================
@@ -439,6 +570,8 @@
 .text-style-options .shadow-controls input[type="color"] {
     width: 100%;
     margin-bottom: 0.3rem;
+    padding: 3px 5px;
+
 }
 
 .text-style-options .shadow-controls input[type="checkbox"] {
@@ -454,3 +587,34 @@
     border: 0;
     border-top: 1px dashed #ddd;
 }
+
+.tab-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.tab-btn {
+    padding: 10px 20px !important;
+    cursor: pointer;
+    background-color: var(--color-background-02) !important;
+    color: white  !important; 
+    font-size: 16px  !important;
+    transition: background-color 0.3s ease  !important;
+    width: 100%  !important;
+    border-radius: var(--size-sml) !important;
+    border: 1px solid var(--color-background-03) !important;
+}
+
+.tab-btn:hover {
+    background-color: var(--color-background-02)  !important;
+    border: 1px solid var(--color-primary-01) !important;
+}
+
+.tab-btn.active {
+    background-color: var(--color-background-02)  !important;
+    color: var(--color-primary-02) !important;
+    border: 1px solid var(--color-primary-02) !important;
+}
+
