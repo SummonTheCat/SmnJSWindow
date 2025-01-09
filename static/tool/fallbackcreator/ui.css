@@ -1,52 +1,78 @@
-/* .\static\tool\fallbackcreator\ui.css */
-
-/* Define CSS variables for each text element's top position and buttons' positions */
-:root {
+/* ============================================================
+   CSS VARIABLES
+   ============================================================ */
+   :root {
+    /* Text Position Variables - Initial Phase */
     --fallback-heading-top: 10%;
-    /* Default value */
     --fallback-description-top: 30%;
-    /* Default value */
-    --fallback-prize-top: 50%;
-    /* Default value */
-    --fallback-buttons-bottom: 10%;
-    /* Default value */
+    /* Removed: --fallback-prize-top: 50%; */
     --fallback-button-accept-top: 25%;
-    /* Default horizontal position */
-    --fallback-button-play-now-top: 50%;
-    /* Default horizontal position */
-    --fallback-button-play-later-top: 75%;
-    /* Default horizontal position */
 
-    /* Post-Accept Phase Variables */
+    /* Text Position Variables - Post-Accept Phase */
     --post-accept-fallback-heading-top: 15%;
     --post-accept-fallback-description-top: 35%;
     --post-accept-fallback-prize-top: 55%;
-    --post-accept-fallback-button-accept-top: 30%;
     --post-accept-fallback-button-play-now-top: 60%;
     --post-accept-fallback-button-play-later-top: 90%;
+    --post-accept-fallback-button-continue-top: 65%;
 
+    /* General Styling Variables */
     --size-sml: 16px;
-    /* Assuming this variable was previously defined */
     --color-background-03: #444;
-    /* Assuming this variable was previously defined */
     --color-background-02: #666;
-    /* Assuming this variable was previously defined */
+
+    /* ========================================================
+       PRE-ACCEPT PHASE STYLES
+       ======================================================== */
+    /* Heading */
+    --fallback-heading-color: #ffffff;
+    --fallback-heading-text-shadow: none;
+    --fallback-heading-font-weight: bold;
+
+    /* Description */
+    --fallback-description-color: #ffffff;
+    --fallback-description-text-shadow: none;
+    --fallback-description-font-weight: normal;
+
+    /* Pre-accept doesn't really use a "prize" by default. */
+
+    /* ========================================================
+       POST-ACCEPT PHASE STYLES
+       ======================================================== */
+    /* Heading */
+    --post-accept-fallback-heading-color: #ffffff;
+    --post-accept-fallback-heading-text-shadow: none;
+    --post-accept-fallback-heading-font-weight: bold;
+
+    /* Description */
+    --post-accept-fallback-description-color: #ffffff;
+    --post-accept-fallback-description-text-shadow: none;
+    --post-accept-fallback-description-font-weight: normal;
+
+    /* Prize */
+    --post-accept-fallback-prize-color: #ffffff;
+    --post-accept-fallback-prize-text-shadow: none;
+    --post-accept-fallback-prize-font-weight: normal;
 }
 
+/* ============================================================
+   LAYOUT STYLES
+   ============================================================ */
 .tool-body {
     display: flex;
     width: 100%;
     height: 100%;
+    background-color: var(--color-background-02);
+    border-radius: var(--size-sml);
 }
 
 .tool-panel-options {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 300px;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
     height: 100%;
-    padding: 1rem;
     box-sizing: border-box;
 }
 
@@ -54,77 +80,117 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: calc(100% - 300px);
-    height: 100%;
+    flex-grow: 1;
+    position: relative;
 }
 
 .tool-content {
-    width: calc(100% - var(--size-sml) - var(--size-sml));
-    height: calc(100% - var(--size-sml) - var(--size-sml));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - var(--size-tiny) * 2);
+    height: calc(100% - var(--size-tiny) * 2);
     border: 1px solid var(--color-background-03);
     border-radius: var(--size-sml);
     position: relative;
     overflow: hidden;
-    /* Ensure content doesn't spill out */
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
-/* Fallback Container */
+.options-base {
+    width: calc(100% - var(--size-sml) * 2);
+    height: calc(100% - var(--size-sml) * 2);
+}
+
+.option-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--size-med);
+    fill: 1;
+}
+
+.option-row label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 14px;
+    width: 100%;
+}
+
+.option-row input[type="range"] {
+    width: 100%;
+}
+
+.option-row input[type="number"] {
+    width: 100px;
+}
+
+.option-row span {
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    color: #ddd;
+}
+
+.options-label {
+    font-size: 14px;
+    margin-bottom: 0.3rem;
+}
+
+/* ============================================================
+   OVERLAY STYLES
+   ============================================================ */
 .fallback {
     position: relative;
-    /* Establishes a new stacking context */
-    display: grid;
-    /* Use CSS Grid to stack elements */
-    place-items: center;
-    /* Center content both vertically and horizontally */
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Image Styling */
 .fallback-image {
     max-height: 80%;
     width: auto;
     object-fit: contain;
     display: block;
-    grid-area: 1 / 1 / 2 / 2;
-    /* Position in grid */
     z-index: 1;
-    /* Ensure the image is below the overlay */
+    /* Below the overlay */
 }
 
-/* Overlay Styling */
 .fallback-overlay {
     position: absolute;
-    /* Position absolutely within .fallback */
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: var(--size-sml);
     box-sizing: border-box;
-    color: #ffffff;
-    /* Text color for contrast */
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Semi-transparent overlay */
+    color: inherit;
+    /* Inherit color from individual elements */
     z-index: 2;
-    /* Ensure overlay is above the image */
-    width: 100%;
-    height: 100%;
+    /* Above the image */
 }
 
-/* Fallback Text Container */
-.fallback-text {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
+.option-heading {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--color-primary-01);
 }
 
-/* Individual Text Elements */
+.option-sub-heading {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--color-primary-02);
+}
+
+/* ============================================================
+   TEXT ELEMENTS STYLES - PRE-ACCEPT
+   ============================================================ */
 .fallback-heading,
 .fallback-description,
 .fallback-prize {
@@ -135,46 +201,79 @@
     text-align: center;
 }
 
+/* PRE-ACCEPT (default) heading & description */
 .fallback-heading {
     top: var(--fallback-heading-top);
     font-size: 24px;
-    font-weight: bold;
+    font-weight: var(--fallback-heading-font-weight);
+    color: var(--fallback-heading-color);
+    text-shadow: var(--fallback-heading-text-shadow);
 }
 
 .fallback-description {
     top: var(--fallback-description-top);
     font-size: 16px;
+    font-weight: var(--fallback-description-font-weight);
+    color: var(--fallback-description-color);
+    text-shadow: var(--fallback-description-text-shadow);
 }
 
+/* (No fallback-prize in pre-accept by default) */
 .fallback-prize {
     top: var(--fallback-prize-top);
     font-size: 18px;
-    font-weight: 500;
+    font-weight: normal;
+    color: #ffffff;
+    text-shadow: none;
+    display: none; /* hidden in pre-accept */
 }
 
-/* Post-Accept Text Elements */
+/* ============================================================
+   TEXT ELEMENTS STYLES - POST-ACCEPT
+   ============================================================ */
 .post-accept .fallback-heading {
     top: var(--post-accept-fallback-heading-top);
+    font-size: 24px;
+    font-weight: var(--post-accept-fallback-heading-font-weight);
+    color: var(--post-accept-fallback-heading-color);
+    text-shadow: var(--post-accept-fallback-heading-text-shadow);
 }
 
 .post-accept .fallback-description {
     top: var(--post-accept-fallback-description-top);
+    font-size: 16px;
+    font-weight: var(--post-accept-fallback-description-font-weight);
+    color: var(--post-accept-fallback-description-color);
+    text-shadow: var(--post-accept-fallback-description-text-shadow);
 }
 
 .post-accept .fallback-prize {
     top: var(--post-accept-fallback-prize-top);
+    font-size: 18px;
+    font-weight: var(--post-accept-fallback-prize-font-weight);
+    color: var(--post-accept-fallback-prize-color);
+    text-shadow: var(--post-accept-fallback-prize-text-shadow);
+    display: block; /* show in post-accept */
 }
 
-/* Buttons Styling */
-.fallback-buttons {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
+/* Play Now Button Position */
+.post-accept #fallback-button-play-now {
+    top: var(--post-accept-fallback-button-play-now-top);
 }
 
+/* Play Later Button Position */
+.post-accept #fallback-button-play-later {
+    top: var(--post-accept-fallback-button-play-later-top);
+}
+
+/* Continue Button Position */
+.post-accept #fallback-button-continue {
+    top: var(--post-accept-fallback-button-continue-top);
+}
+
+/* ============================================================
+   BUTTONS STYLES
+   ============================================================ */
 .fallback-buttons button {
     position: absolute;
     padding: 10px 20px;
@@ -194,51 +293,48 @@
     background-color: var(--color-background-02);
 }
 
-/* Position each button vertically based on CSS variables */
+/* Specific Buttons Positioning */
 #fallback-button-accept {
     top: var(--fallback-button-accept-top);
 }
 
 #fallback-button-play-now {
-    top: var(--fallback-button-play-now-top);
-}
-
-#fallback-button-play-later {
-    top: var(--fallback-button-play-later-top);
-}
-
-/* Post-Accept Buttons Position */
-.post-accept #fallback-button-accept {
-    top: var(--post-accept-fallback-button-accept-top);
-}
-
-.post-accept #fallback-button-play-now {
     top: var(--post-accept-fallback-button-play-now-top);
 }
 
-.post-accept #fallback-button-play-later {
+#fallback-button-play-later {
     top: var(--post-accept-fallback-button-play-later-top);
 }
 
-/* Buttons in the Options Panel */
-.tool-panel-options .tool-content button {
-    margin-top: 1rem;
-    /* Add spacing between sliders and buttons */
-    padding: 10px 20px;
-    border: none;
-    border-radius: var(--size-sml);
-    cursor: pointer;
-    background-color: var(--color-background-03);
-    color: white;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+/* ============================================================
+   PHASE-BASED STYLES
+   ============================================================ */
+/* Pre-Accept Phase */
+.pre-accept .fallback-button-play-now,
+.pre-accept .fallback-button-play-later,
+.pre-accept .fallback-button-continue {
+    display: none;
 }
 
-.tool-panel-options .tool-content button:hover {
-    background-color: var(--color-background-02);
+/* Post-Accept Phase */
+.post-accept .fallback-button-accept {
+    display: none;
 }
 
-/* Switch Styling */
+/* Use Continue Button Enabled */
+.use-continue .fallback-button-continue {
+    display: block;
+    top: var(--post-accept-fallback-button-continue-top);
+}
+
+.use-continue .fallback-button-play-now,
+.use-continue .fallback-button-play-later {
+    display: none;
+}
+
+/* ============================================================
+   SWITCHES STYLES
+   ============================================================ */
 .switch {
     display: flex;
     align-items: center;
@@ -249,20 +345,112 @@
     margin-right: 0.5rem;
 }
 
-input[type="range"] {
-    width: 80%;
+/* ============================================================
+   SLIDERS STYLES
+   ============================================================ */
+.slider-container {
+    margin-bottom: 1rem;
+    width: 100%;
 }
 
-/* Post-Accept Sliders Container */
-.post-accept-sliders {
-    display: none;
+/* ============================================================
+   ACTION BUTTONS STYLES
+   ============================================================ */
+.tool-panel-options .tool-content button {
+    margin-top: var(--size-tiny);
+    margin-bottom: var(--size-tiny);
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--size-sml);
+    cursor: pointer;
+    background-color: var(--color-background-03);
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100%;
 }
 
-.post-accept .post-accept-sliders {
-    display: block;
+.tool-panel-options .tool-content button:hover {
+    background-color: var(--color-background-02);
 }
 
-/* Hide Initial Phase Sliders when Post-Accept Phase is active */
-.post-accept #initial-phase-sliders {
-    display: none;
+/* ============================================================
+   MAXIMIZE VIEW STYLES
+   ============================================================ */
+.preview-maximized {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-background-02);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.close-maximize {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* ============================================================
+   NEW PER-TEXT ELEMENT STYLING CONTROLS
+   ============================================================ */
+.text-style-options {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.text-style-options h4 {
+    margin-bottom: 0.5rem;
+    font-size: 16px;
+}
+
+.text-style-options .slider-container,
+.text-style-options .color-picker-container,
+.text-style-options .shadow-controls {
+    margin-bottom: 0.5rem;
+}
+
+.text-style-options .shadow-controls {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-style-options .shadow-controls label {
+    font-size: 14px;
+    margin-bottom: 0.3rem;
+}
+
+.text-style-options .shadow-controls input[type="number"],
+.text-style-options .shadow-controls input[type="color"] {
+    width: 100%;
+    margin-bottom: 0.3rem;
+}
+
+.text-style-options .shadow-controls input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.hr-main {
+    border: 0;
+    border-top: 2px solid #ddd;
+}
+
+.hr-sub {
+    border: 0;
+    border-top: 1px dashed #ddd;
 }

@@ -173,6 +173,16 @@
     }
 
 
+    input {
+        font-family: "Noto Sans", serif;
+        font-optical-sizing: auto;
+        font-size: 1rem;
+        color: var(--color-primary-01);
+        background-color: var(--color-background-01);
+        border: 1px solid var(--color-background-03);
+        border-radius: var(--size-tiny);
+    }
+
 
     .space-tiny {
         margin: var(--size-tiny);
@@ -257,29 +267,7 @@
         });
 }
 
-    // Tool maximized state
-    function toggleToolMaximized() {
-        
-        
-        const toolPanel = document.getElementById('tool-panel');
-        if (toolPanel.children.length === 0) {
-            return;
-        }
 
-        toolPanel.classList.toggle('panel-tool-maximized');
-        toolPanel.classList.toggle('panel-tool');
-        
-    }
-
-    // Tool maximized state shortcut ctrl + f
-    document.addEventListener('keydown', (e) => {
-        
-        if (e.ctrlKey && e.key === 'f') {
-            // ignore the default behavior
-            e.preventDefault();
-            toggleToolMaximized();
-        }
-    });
 
 </script>
 
