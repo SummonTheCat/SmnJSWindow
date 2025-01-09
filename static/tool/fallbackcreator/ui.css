@@ -1,0 +1,268 @@
+/* .\static\tool\fallbackcreator\ui.css */
+
+/* Define CSS variables for each text element's top position and buttons' positions */
+:root {
+    --fallback-heading-top: 10%;
+    /* Default value */
+    --fallback-description-top: 30%;
+    /* Default value */
+    --fallback-prize-top: 50%;
+    /* Default value */
+    --fallback-buttons-bottom: 10%;
+    /* Default value */
+    --fallback-button-accept-top: 25%;
+    /* Default horizontal position */
+    --fallback-button-play-now-top: 50%;
+    /* Default horizontal position */
+    --fallback-button-play-later-top: 75%;
+    /* Default horizontal position */
+
+    /* Post-Accept Phase Variables */
+    --post-accept-fallback-heading-top: 15%;
+    --post-accept-fallback-description-top: 35%;
+    --post-accept-fallback-prize-top: 55%;
+    --post-accept-fallback-button-accept-top: 30%;
+    --post-accept-fallback-button-play-now-top: 60%;
+    --post-accept-fallback-button-play-later-top: 90%;
+
+    --size-sml: 16px;
+    /* Assuming this variable was previously defined */
+    --color-background-03: #444;
+    /* Assuming this variable was previously defined */
+    --color-background-02: #666;
+    /* Assuming this variable was previously defined */
+}
+
+.tool-body {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.tool-panel-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 300px;
+    height: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.tool-panel-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 300px);
+    height: 100%;
+}
+
+.tool-content {
+    width: calc(100% - var(--size-sml) - var(--size-sml));
+    height: calc(100% - var(--size-sml) - var(--size-sml));
+    border: 1px solid var(--color-background-03);
+    border-radius: var(--size-sml);
+    position: relative;
+    overflow: hidden;
+    /* Ensure content doesn't spill out */
+}
+
+/* Fallback Container */
+.fallback {
+    position: relative;
+    /* Establishes a new stacking context */
+    display: grid;
+    /* Use CSS Grid to stack elements */
+    place-items: center;
+    /* Center content both vertically and horizontally */
+    width: 100%;
+    height: 100%;
+}
+
+/* Image Styling */
+.fallback-image {
+    max-height: 80%;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    grid-area: 1 / 1 / 2 / 2;
+    /* Position in grid */
+    z-index: 1;
+    /* Ensure the image is below the overlay */
+}
+
+/* Overlay Styling */
+.fallback-overlay {
+    position: absolute;
+    /* Position absolutely within .fallback */
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--size-sml);
+    box-sizing: border-box;
+    color: #ffffff;
+    /* Text color for contrast */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent overlay */
+    z-index: 2;
+    /* Ensure overlay is above the image */
+    width: 100%;
+    height: 100%;
+}
+
+/* Fallback Text Container */
+.fallback-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* Individual Text Elements */
+.fallback-heading,
+.fallback-description,
+.fallback-prize {
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.fallback-heading {
+    top: var(--fallback-heading-top);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.fallback-description {
+    top: var(--fallback-description-top);
+    font-size: 16px;
+}
+
+.fallback-prize {
+    top: var(--fallback-prize-top);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Post-Accept Text Elements */
+.post-accept .fallback-heading {
+    top: var(--post-accept-fallback-heading-top);
+}
+
+.post-accept .fallback-description {
+    top: var(--post-accept-fallback-description-top);
+}
+
+.post-accept .fallback-prize {
+    top: var(--post-accept-fallback-prize-top);
+}
+
+/* Buttons Styling */
+.fallback-buttons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.fallback-buttons button {
+    position: absolute;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--size-sml);
+    cursor: pointer;
+    background-color: var(--color-background-03);
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.fallback-buttons button:hover {
+    background-color: var(--color-background-02);
+}
+
+/* Position each button vertically based on CSS variables */
+#fallback-button-accept {
+    top: var(--fallback-button-accept-top);
+}
+
+#fallback-button-play-now {
+    top: var(--fallback-button-play-now-top);
+}
+
+#fallback-button-play-later {
+    top: var(--fallback-button-play-later-top);
+}
+
+/* Post-Accept Buttons Position */
+.post-accept #fallback-button-accept {
+    top: var(--post-accept-fallback-button-accept-top);
+}
+
+.post-accept #fallback-button-play-now {
+    top: var(--post-accept-fallback-button-play-now-top);
+}
+
+.post-accept #fallback-button-play-later {
+    top: var(--post-accept-fallback-button-play-later-top);
+}
+
+/* Buttons in the Options Panel */
+.tool-panel-options .tool-content button {
+    margin-top: 1rem;
+    /* Add spacing between sliders and buttons */
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--size-sml);
+    cursor: pointer;
+    background-color: var(--color-background-03);
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.tool-panel-options .tool-content button:hover {
+    background-color: var(--color-background-02);
+}
+
+/* Switch Styling */
+.switch {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.switch input {
+    margin-right: 0.5rem;
+}
+
+input[type="range"] {
+    width: 80%;
+}
+
+/* Post-Accept Sliders Container */
+.post-accept-sliders {
+    display: none;
+}
+
+.post-accept .post-accept-sliders {
+    display: block;
+}
+
+/* Hide Initial Phase Sliders when Post-Accept Phase is active */
+.post-accept #initial-phase-sliders {
+    display: none;
+}
