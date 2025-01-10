@@ -102,8 +102,13 @@ function setupSlider(sliderId, valueId, cssVariable) {
 
     function updateValue() {
         const value = slider.value;
-        valueDisplay.textContent = `${value}%`;
-        document.documentElement.style.setProperty(cssVariable, `${value}%`);
+        if (cssVariable.includes('font-size')) {
+            valueDisplay.textContent = `${value}px`;
+            document.documentElement.style.setProperty(cssVariable, `${value}px`);
+        } else {
+            valueDisplay.textContent = `${value}%`;
+            document.documentElement.style.setProperty(cssVariable, `${value}%`);
+        }
 
         // Save to localStorage
         const savedKey = `${sliderId}-value`;
@@ -117,7 +122,7 @@ function setupSlider(sliderId, valueId, cssVariable) {
     return { slider, updateValue };
 }
 
-// Updated slider configurations including width sliders
+// Updated slider configurations including width and font-size sliders
 const sliderConfigs = [
     // Initial Phase Position Sliders
     { sliderId: 'heading-position-slider', valueId: 'heading-position-value', cssVariable: '--fallback-heading-top' },
@@ -127,8 +132,15 @@ const sliderConfigs = [
     { sliderId: 'heading-width-slider', valueId: 'heading-width-value', cssVariable: '--fallback-heading-width' },
     { sliderId: 'description-width-slider', valueId: 'description-width-value', cssVariable: '--fallback-description-width' },
 
+    // Initial Phase Font Size Sliders
+    { sliderId: 'heading-font-size-slider', valueId: 'heading-font-size-value', cssVariable: '--fallback-heading-font-size' },
+    { sliderId: 'description-font-size-slider', valueId: 'description-font-size-value', cssVariable: '--fallback-description-font-size' },
+
     // Accept Button Position Slider
     { sliderId: 'accept-button-vertical-slider', valueId: 'accept-button-vertical-value', cssVariable: '--fallback-button-accept-top' },
+
+    // Accept Button Font Size Slider
+    { sliderId: 'accept-button-font-size-slider', valueId: 'accept-button-font-size-value', cssVariable: '--accept-button-font-size' }, // New CSS Variable
 
     // Post-Accept Phase Position Sliders
     { sliderId: 'post-accept-heading-position-slider', valueId: 'post-accept-heading-position-value', cssVariable: '--post-accept-fallback-heading-top' },
@@ -141,7 +153,17 @@ const sliderConfigs = [
     // Post-Accept Phase Width Sliders
     { sliderId: 'post-accept-heading-width-slider', valueId: 'post-accept-heading-width-value', cssVariable: '--post-accept-fallback-heading-width' },
     { sliderId: 'post-accept-description-width-slider', valueId: 'post-accept-description-width-value', cssVariable: '--post-accept-fallback-description-width' },
-    { sliderId: 'post-accept-prize-width-slider', valueId: 'post-accept-prize-width-value', cssVariable: '--post-accept-fallback-prize-width' }
+    { sliderId: 'post-accept-prize-width-slider', valueId: 'post-accept-prize-width-value', cssVariable: '--post-accept-fallback-prize-width' },
+
+    // Post-Accept Phase Font Size Sliders
+    { sliderId: 'post-accept-heading-font-size-slider', valueId: 'post-accept-heading-font-size-value', cssVariable: '--post-accept-fallback-heading-font-size' },
+    { sliderId: 'post-accept-description-font-size-slider', valueId: 'post-accept-description-font-size-value', cssVariable: '--post-accept-fallback-description-font-size' },
+    { sliderId: 'post-accept-prize-font-size-slider', valueId: 'post-accept-prize-font-size-value', cssVariable: '--post-accept-fallback-prize-font-size' },
+
+    // Button Font Size Sliders
+    { sliderId: 'play-now-button-font-size-slider', valueId: 'play-now-button-font-size-value', cssVariable: '--play-now-button-font-size' }, // New
+    { sliderId: 'play-later-button-font-size-slider', valueId: 'play-later-button-font-size-value', cssVariable: '--play-later-button-font-size' }, // New
+    { sliderId: 'continue-button-font-size-slider', valueId: 'continue-button-font-size-value', cssVariable: '--continue-button-font-size' } // New
 ];
 
 // Existing slider setups
@@ -317,7 +339,7 @@ continueButton.addEventListener('click', () => {
  * @returns {string} - The generated lorem ipsum text.
  */
 function generateLoremIpsum(maxChars) {
-    const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+    const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
     if (lorem.length <= maxChars) {
         return lorem;
     }
@@ -404,7 +426,8 @@ function setupTextStyling(config) {
         cssColorVar,
         cssShadowVar,
         cssFontWeightVar,
-        cssWidthVar // New: Add cssWidthVar
+        cssWidthVar, // Existing
+        cssFontSizeVar // New
     } = config;
 
     // Color Picker
@@ -415,8 +438,10 @@ function setupTextStyling(config) {
     const shadowBlur = document.getElementById(`${elementId}-shadow-blur`);
     const shadowColor = document.getElementById(`${elementId}-shadow-color`);
     const boldToggle = document.getElementById(`${elementId}-bold-toggle`);
-    const widthSlider = document.getElementById(`${elementId}-width-slider`); // New: Width Slider
-    const widthValue = document.getElementById(`${elementId}-width-value`); // New: Width Value Display
+    const widthSlider = document.getElementById(`${elementId}-width-slider`); // Existing
+    const widthValue = document.getElementById(`${elementId}-width-value`); // Existing
+    const fontSizeSlider = document.getElementById(`${elementId}-font-size-slider`); // New
+    const fontSizeValue = document.getElementById(`${elementId}-font-size-value`); // New
 
     // Define unique keys for local storage
     const colorKey     = `${elementId}-text-color-value`;
@@ -426,7 +451,8 @@ function setupTextStyling(config) {
     const blurKey      = `${elementId}-shadow-blur-value`;
     const shadowColKey = `${elementId}-shadow-color-value`;
     const boldKey      = `${elementId}-bold-toggle-value`;
-    const widthKey     = `${elementId}-width-slider-value`; // New: Width Key
+    const widthKey     = `${elementId}-width-slider-value`;
+    const fontSizeKey  = `${elementId}-font-size-slider-value`; // New
 
     function updateTextStyles() {
         // Gather current values
@@ -438,6 +464,7 @@ function setupTextStyling(config) {
         const shColor = shadowColor ? shadowColor.value : '#000000';
         const isBold = boldToggle && boldToggle.checked;
         const width = widthSlider ? widthSlider.value : 80; // Default width
+        const fontSize = fontSizeSlider ? fontSizeSlider.value : 24; // Default font size
 
         // Apply to CSS
         document.documentElement.style.setProperty(cssColorVar, color);
@@ -445,10 +472,14 @@ function setupTextStyling(config) {
         document.documentElement.style.setProperty(cssShadowVar, shadowVal);
         document.documentElement.style.setProperty(cssFontWeightVar, isBold ? 'bold' : 'normal');
         document.documentElement.style.setProperty(cssWidthVar, `${width}%`); // Apply width
+        document.documentElement.style.setProperty(cssFontSizeVar, `${fontSize}px`); // Apply font size
 
-        // Update width display
+        // Update displays
         if (widthValue) {
             widthValue.textContent = `${width}%`;
+        }
+        if (fontSizeValue) {
+            fontSizeValue.textContent = `${fontSize}px`;
         }
 
         // Save to localStorage
@@ -460,6 +491,7 @@ function setupTextStyling(config) {
         if (shadowColor)   updateSetting(shadowColKey, shColor);
         if (boldToggle)    updateSetting(boldKey, isBold);
         if (widthSlider)   updateSetting(widthKey, width);
+        if (fontSizeSlider) updateSetting(fontSizeKey, fontSize); // New
     }
 
     // Attach event listeners
@@ -472,7 +504,8 @@ function setupTextStyling(config) {
     if (shadowBlur) shadowBlur.addEventListener('input', updateTextStyles);
     if (shadowColor) shadowColor.addEventListener('input', updateTextStyles);
     if (boldToggle) boldToggle.addEventListener('change', updateTextStyles);
-    if (widthSlider) widthSlider.addEventListener('input', updateTextStyles); // New: Width Slider Event
+    if (widthSlider) widthSlider.addEventListener('input', updateTextStyles); // Existing
+    if (fontSizeSlider) fontSizeSlider.addEventListener('input', updateTextStyles); // New
 
     // On load, if we have saved settings, apply them to the DOM elements
     if (settings[colorKey] && colorPicker) {
@@ -496,16 +529,20 @@ function setupTextStyling(config) {
     if (settings[boldKey] !== undefined && boldToggle) {
         boldToggle.checked = settings[boldKey];
     }
-    if (settings[widthKey] !== undefined && widthSlider && widthValue) { // New: Width Settings
+    if (settings[widthKey] !== undefined && widthSlider && widthValue) {
         widthSlider.value = settings[widthKey];
         widthValue.textContent = `${settings[widthKey]}%`;
+    }
+    if (settings[fontSizeKey] !== undefined && fontSizeSlider && fontSizeValue) { // New
+        fontSizeSlider.value = settings[fontSizeKey];
+        fontSizeValue.textContent = `${settings[fontSizeKey]}px`;
     }
 
     // Run once to ensure current settings are applied visually
     updateTextStyles();
 }
 
-// Updated text elements configuration to include width variables
+// Updated text elements configuration to include font-size variables
 const textElements = [
     // Pre-accept heading
     {
@@ -513,7 +550,8 @@ const textElements = [
         cssColorVar: '--fallback-heading-color',
         cssShadowVar: '--fallback-heading-text-shadow',
         cssFontWeightVar: '--fallback-heading-font-weight',
-        cssWidthVar: '--fallback-heading-width' // New: Width Variable
+        cssWidthVar: '--fallback-heading-width',
+        cssFontSizeVar: '--fallback-heading-font-size' // New
     },
     // Pre-accept description
     {
@@ -521,7 +559,8 @@ const textElements = [
         cssColorVar: '--fallback-description-color',
         cssShadowVar: '--fallback-description-text-shadow',
         cssFontWeightVar: '--fallback-description-font-weight',
-        cssWidthVar: '--fallback-description-width' // New: Width Variable
+        cssWidthVar: '--fallback-description-width',
+        cssFontSizeVar: '--fallback-description-font-size' // New
     },
     // Post-accept heading
     {
@@ -529,7 +568,8 @@ const textElements = [
         cssColorVar: '--post-accept-fallback-heading-color',
         cssShadowVar: '--post-accept-fallback-heading-text-shadow',
         cssFontWeightVar: '--post-accept-fallback-heading-font-weight',
-        cssWidthVar: '--post-accept-fallback-heading-width' // New: Width Variable
+        cssWidthVar: '--post-accept-fallback-heading-width',
+        cssFontSizeVar: '--post-accept-fallback-heading-font-size' // New
     },
     // Post-accept description
     {
@@ -537,7 +577,8 @@ const textElements = [
         cssColorVar: '--post-accept-fallback-description-color',
         cssShadowVar: '--post-accept-fallback-description-text-shadow',
         cssFontWeightVar: '--post-accept-fallback-description-font-weight',
-        cssWidthVar: '--post-accept-fallback-description-width' // New: Width Variable
+        cssWidthVar: '--post-accept-fallback-description-width',
+        cssFontSizeVar: '--post-accept-fallback-description-font-size' // New
     },
     // Post-accept prize
     {
@@ -545,7 +586,8 @@ const textElements = [
         cssColorVar: '--post-accept-fallback-prize-color',
         cssShadowVar: '--post-accept-fallback-prize-text-shadow',
         cssFontWeightVar: '--post-accept-fallback-prize-font-weight',
-        cssWidthVar: '--post-accept-fallback-prize-width' // New: Width Variable
+        cssWidthVar: '--post-accept-fallback-prize-width',
+        cssFontSizeVar: '--post-accept-fallback-prize-font-size' // New
     }
 ];
 
@@ -581,7 +623,8 @@ function setupButtonStyling(config) {
         varBorderWidth,
         varTextShadow,
         varFontWeight,
-        varBorderRadius
+        varBorderRadius,
+        varFontSize // New
     } = config;
 
     // HTML Inputs
@@ -596,8 +639,10 @@ function setupButtonStyling(config) {
     const shadowBlur = document.getElementById(`${elementPrefix}-shadow-blur`);
     const shadowColor = document.getElementById(`${elementPrefix}-shadow-color`);
     const borderRadiusInput = document.getElementById(`${elementPrefix}-border-radius`);
+    const fontSizeSlider = document.getElementById(`${elementPrefix}-font-size-slider`); // New
+    const fontSizeValue = document.getElementById(`${elementPrefix}-font-size-value`); // New
 
-    // Unique localStorage keys
+    // Define unique localStorage keys
     const bgKey         = `${elementPrefix}-bg-color-value`;
     const fgKey         = `${elementPrefix}-fg-color-value`;
     const boldKey       = `${elementPrefix}-bold-toggle-value`;
@@ -609,6 +654,7 @@ function setupButtonStyling(config) {
     const shadowBlurKey = `${elementPrefix}-shadow-blur-value`;
     const shadowColKey  = `${elementPrefix}-shadow-color-value`;
     const borderRadKey  = `${elementPrefix}-border-radius-value`;
+    const fontSizeKey   = `${elementPrefix}-font-size-slider-value`; // New
 
     function updateButtonStyles() {
         // Gather values
@@ -623,6 +669,7 @@ function setupButtonStyling(config) {
         const shBlur = shadowBlur ? parseInt(shadowBlur.value, 10) || 0 : 0;
         const shColor = shadowColor ? shadowColor.value : '#000000';
         const radVal = borderRadiusInput ? parseInt(borderRadiusInput.value, 10) || 0 : 0;
+        const fontSize = fontSizeSlider ? fontSizeSlider.value : 16; // Default font size
 
         // Apply to CSS
         document.documentElement.style.setProperty(varBg, bgVal);
@@ -635,6 +682,12 @@ function setupButtonStyling(config) {
         document.documentElement.style.setProperty(varTextShadow, shadowVal);
 
         document.documentElement.style.setProperty(varBorderRadius, `${radVal}px`);
+        document.documentElement.style.setProperty(varFontSize, `${fontSize}px`); // Apply font size
+
+        // Update displays
+        if (fontSizeValue) {
+            fontSizeValue.textContent = `${fontSize}px`;
+        }
 
         // Save to localStorage
         if (bgPicker)           updateSetting(bgKey, bgVal);
@@ -648,6 +701,7 @@ function setupButtonStyling(config) {
         if (shadowBlur)         updateSetting(shadowBlurKey, shBlur);
         if (shadowColor)        updateSetting(shadowColKey, shColor);
         if (borderRadiusInput)  updateSetting(borderRadKey, radVal);
+        if (fontSizeSlider)     updateSetting(fontSizeKey, fontSize); // New
     }
 
     // Attach event listeners
@@ -662,6 +716,7 @@ function setupButtonStyling(config) {
     if (shadowBlur) shadowBlur.addEventListener('input', updateButtonStyles);
     if (shadowColor) shadowColor.addEventListener('input', updateButtonStyles);
     if (borderRadiusInput) borderRadiusInput.addEventListener('input', updateButtonStyles);
+    if (fontSizeSlider) fontSizeSlider.addEventListener('input', updateButtonStyles); // New
 
     // On load, if we have saved settings, apply them to the DOM inputs
     if (settings[bgKey] && bgPicker) {
@@ -697,10 +752,15 @@ function setupButtonStyling(config) {
     if (settings[borderRadKey] !== undefined && borderRadiusInput) {
         borderRadiusInput.value = settings[borderRadKey];
     }
+    if (settings[fontSizeKey] !== undefined && fontSizeSlider && fontSizeValue) { // New
+        fontSizeSlider.value = settings[fontSizeKey];
+        fontSizeValue.textContent = `${settings[fontSizeKey]}px`;
+    }
 
-    // Run once so the UI & preview reflect these stored values
+    // Run once to ensure current settings are applied visually
     updateButtonStyles();
 }
+
 
 // Configuration for each button
 const buttonConfigs = [
@@ -712,7 +772,8 @@ const buttonConfigs = [
         varBorderWidth: '--accept-button-border-width',
         varTextShadow: '--accept-button-text-shadow',
         varFontWeight: '--accept-button-font-weight',
-        varBorderRadius: '--accept-button-border-radius'
+        varBorderRadius: '--accept-button-border-radius',
+        varFontSize: '--accept-button-font-size' // New
     },
     {
         elementPrefix: 'play-now-button',
@@ -722,7 +783,8 @@ const buttonConfigs = [
         varBorderWidth: '--play-now-button-border-width',
         varTextShadow: '--play-now-button-text-shadow',
         varFontWeight: '--play-now-button-font-weight',
-        varBorderRadius: '--play-now-button-border-radius'
+        varBorderRadius: '--play-now-button-border-radius',
+        varFontSize: '--play-now-button-font-size' // New
     },
     {
         elementPrefix: 'play-later-button',
@@ -732,7 +794,8 @@ const buttonConfigs = [
         varBorderWidth: '--play-later-button-border-width',
         varTextShadow: '--play-later-button-text-shadow',
         varFontWeight: '--play-later-button-font-weight',
-        varBorderRadius: '--play-later-button-border-radius'
+        varBorderRadius: '--play-later-button-border-radius',
+        varFontSize: '--play-later-button-font-size' // New
     },
     {
         elementPrefix: 'continue-button',
@@ -742,7 +805,8 @@ const buttonConfigs = [
         varBorderWidth: '--continue-button-border-width',
         varTextShadow: '--continue-button-text-shadow',
         varFontWeight: '--continue-button-font-weight',
-        varBorderRadius: '--continue-button-border-radius'
+        varBorderRadius: '--continue-button-border-radius',
+        varFontSize: '--continue-button-font-size' // New
     }
 ];
 
@@ -783,6 +847,13 @@ function exportStyle() {
             ]
         },
         {
+            title: 'Text Font Size Variables - Initial Phase', // New
+            variables: [
+                '--fallback-heading-font-size',
+                '--fallback-description-font-size'
+            ]
+        },
+        {
             title: 'Text Position Variables - Post-Accept Phase',
             variables: [
                 '--post-accept-fallback-heading-top',
@@ -799,6 +870,14 @@ function exportStyle() {
                 '--post-accept-fallback-heading-width',
                 '--post-accept-fallback-description-width',
                 '--post-accept-fallback-prize-width'
+            ]
+        },
+        {
+            title: 'Text Font Size Variables - Post-Accept Phase', // New
+            variables: [
+                '--post-accept-fallback-heading-font-size',
+                '--post-accept-fallback-description-font-size',
+                '--post-accept-fallback-prize-font-size'
             ]
         },
         {
@@ -837,6 +916,7 @@ function exportStyle() {
                 '--accept-button-text-shadow',
                 '--accept-button-font-weight',
                 '--accept-button-border-radius',
+                '--accept-button-font-size',
                 // Play Now Button
                 '--play-now-button-bg',
                 '--play-now-button-fg',
@@ -845,6 +925,7 @@ function exportStyle() {
                 '--play-now-button-text-shadow',
                 '--play-now-button-font-weight',
                 '--play-now-button-border-radius',
+                '--play-now-button-font-size',
                 // Play Later Button
                 '--play-later-button-bg',
                 '--play-later-button-fg',
@@ -853,6 +934,7 @@ function exportStyle() {
                 '--play-later-button-text-shadow',
                 '--play-later-button-font-weight',
                 '--play-later-button-border-radius',
+                '--play-later-button-font-size',
                 // Continue Button
                 '--continue-button-bg',
                 '--continue-button-fg',
@@ -860,7 +942,8 @@ function exportStyle() {
                 '--continue-button-border-width',
                 '--continue-button-text-shadow',
                 '--continue-button-font-weight',
-                '--continue-button-border-radius'
+                '--continue-button-border-radius',
+                '--continue-button-font-size'
             ]
         },
         {
@@ -870,6 +953,15 @@ function exportStyle() {
                 '--play-now-button-border-radius',
                 '--play-later-button-border-radius',
                 '--continue-button-border-radius'
+            ]
+        },
+        {
+            title: 'BUTTON FONT SIZE VARIABLES', // New
+            variables: [
+                '--accept-button-font-size',
+                '--play-now-button-font-size',
+                '--play-later-button-font-size',
+                '--continue-button-font-size'
             ]
         }
     ];
@@ -966,9 +1058,13 @@ sliderConfigs.forEach(({ sliderId, valueId, cssVariable }) => {
     if (slider && settings[savedKey] !== undefined) {
         slider.value = settings[savedKey];
         // Call the same logic as "updateValue()"
-        const value = slider.value;
-        valueDisplay.textContent = `${value}%`;
-        document.documentElement.style.setProperty(cssVariable, `${value}%`);
+        if (cssVariable.includes('font-size')) {
+            valueDisplay.textContent = `${slider.value}px`;
+            document.documentElement.style.setProperty(cssVariable, `${slider.value}px`);
+        } else {
+            valueDisplay.textContent = `${slider.value}%`;
+            document.documentElement.style.setProperty(cssVariable, `${slider.value}%`);
+        }
     }
 });
 

@@ -4,7 +4,7 @@
     <div class="tool-panel-options">
         <div class="tool-content">
             <div class="options-base">
-                <h2>Options Panel</h2>
+                <h2>Fallback Settings</h2>
 
                 <!-- Phase Toggle Switch -->
                 <div class="switch">
@@ -54,6 +54,14 @@
                                 <input type="range" id="heading-width-slider" name="heading-width-slider" min="0"
                                     max="100" value="80" />
                                 <span id="heading-width-value">80%</span>
+                            </div>
+
+                            <!-- **New** Slider for Fallback Heading Font Size -->
+                            <div class="option-row">
+                                <label for="heading-font-size-slider">Font Size:</label>
+                                <input type="range" id="heading-font-size-slider" name="heading-font-size-slider"
+                                    min="10" max="40" value="24" />
+                                <span id="heading-font-size-value">24px</span>
                             </div>
 
                             <!-- Text Color Picker -->
@@ -115,6 +123,14 @@
                                 <input type="range" id="description-width-slider" name="description-width-slider"
                                     min="0" max="100" value="60" />
                                 <span id="description-width-value">60%</span>
+                            </div>
+
+                            <!-- **New** Slider for Fallback Description Font Size -->
+                            <div class="option-row">
+                                <label for="description-font-size-slider">Font Size:</label>
+                                <input type="range" id="description-font-size-slider" name="description-font-size-slider"
+                                    min="10" max="40" value="16" />
+                                <span id="description-font-size-value">16px</span>
                             </div>
 
                             <!-- Text Color Picker -->
@@ -186,6 +202,14 @@
                                 <span id="post-accept-heading-width-value">80%</span>
                             </div>
 
+                            <!-- **New** Slider for Post-Accept Fallback Heading Font Size -->
+                            <div class="option-row">
+                                <label for="post-accept-heading-font-size-slider">Font Size:</label>
+                                <input type="range" id="post-accept-heading-font-size-slider"
+                                    name="post-accept-heading-font-size-slider" min="10" max="40" value="24" />
+                                <span id="post-accept-heading-font-size-value">24px</span>
+                            </div>
+
                             <!-- Text Color Picker -->
                             <div class="option-row">
                                 <label for="post-accept-heading-text-color">Text Color:</label>
@@ -248,6 +272,14 @@
                                 <span id="post-accept-description-width-value">60%</span>
                             </div>
 
+                            <!-- **New** Slider for Post-Accept Fallback Description Font Size -->
+                            <div class="option-row">
+                                <label for="post-accept-description-font-size-slider">Font Size:</label>
+                                <input type="range" id="post-accept-description-font-size-slider"
+                                    name="post-accept-description-font-size-slider" min="10" max="40" value="16" />
+                                <span id="post-accept-description-font-size-value">16px</span>
+                            </div>
+
                             <!-- Text Color Picker -->
                             <div class="option-row">
                                 <label for="post-accept-description-text-color">Text Color:</label>
@@ -308,6 +340,14 @@
                                 <input type="range" id="post-accept-prize-width-slider"
                                     name="post-accept-prize-width-slider" min="0" max="100" value="70" />
                                 <span id="post-accept-prize-width-value">70%</span>
+                            </div>
+
+                            <!-- **New** Slider for Post-Accept Fallback Prize Font Size -->
+                            <div class="option-row">
+                                <label for="post-accept-prize-font-size-slider">Font Size:</label>
+                                <input type="range" id="post-accept-prize-font-size-slider"
+                                    name="post-accept-prize-font-size-slider" min="10" max="40" value="18" />
+                                <span id="post-accept-prize-font-size-value">18px</span>
                             </div>
 
                             <!-- Text Color Picker -->
@@ -381,6 +421,14 @@
                         <div class="option-row">
                             <label for="accept-button-fg-color">Foreground (Text) Color:</label>
                             <input type="color" id="accept-button-fg-color" value="#ffffff" />
+                        </div>
+
+                        <!-- **New** Font Size Slider -->
+                        <div class="option-row">
+                            <label for="accept-button-font-size-slider">Font Size:</label>
+                            <input type="range" id="accept-button-font-size-slider" name="accept-button-font-size-slider"
+                                min="10" max="40" value="16" />
+                            <span id="accept-button-font-size-value">16px</span>
                         </div>
 
                         <!-- Bold Toggle -->
@@ -461,6 +509,14 @@
                             <input type="color" id="play-now-button-fg-color" value="#ffffff" />
                         </div>
 
+                        <!-- **New** Font Size Slider -->
+                        <div class="option-row">
+                            <label for="play-now-button-font-size-slider">Font Size:</label>
+                            <input type="range" id="play-now-button-font-size-slider" name="play-now-button-font-size-slider"
+                                min="10" max="40" value="16" />
+                            <span id="play-now-button-font-size-value">16px</span>
+                        </div>
+
                         <!-- Bold Toggle -->
                         <div class="option-row">
                             <label for="play-now-button-bold-toggle">Bold:</label>
@@ -539,6 +595,14 @@
                             <input type="color" id="play-later-button-fg-color" value="#ffffff" />
                         </div>
 
+                        <!-- **New** Font Size Slider -->
+                        <div class="option-row">
+                            <label for="play-later-button-font-size-slider">Font Size:</label>
+                            <input type="range" id="play-later-button-font-size-slider" name="play-later-button-font-size-slider"
+                                min="10" max="40" value="16" />
+                            <span id="play-later-button-font-size-value">16px</span>
+                        </div>
+
                         <!-- Bold Toggle -->
                         <div class="option-row">
                             <label for="play-later-button-bold-toggle">Bold:</label>
@@ -615,6 +679,14 @@
                         <div class="option-row">
                             <label for="continue-button-fg-color">Foreground (Text) Color:</label>
                             <input type="color" id="continue-button-fg-color" value="#ffffff" />
+                        </div>
+
+                        <!-- **New** Font Size Slider -->
+                        <div class="option-row">
+                            <label for="continue-button-font-size-slider">Font Size:</label>
+                            <input type="range" id="continue-button-font-size-slider" name="continue-button-font-size-slider"
+                                min="10" max="40" value="16" />
+                            <span id="continue-button-font-size-value">16px</span>
                         </div>
 
                         <!-- Bold Toggle -->

@@ -3,38 +3,29 @@
 /* ============================================================
    CSS VARIABLES
    ============================================================ */
-   /* ============================================================
-   CSS VARIABLES
-   ============================================================ */
-:root {
+   :root {
     /* ========================================================
        TEXT POSITION VARIABLES - INITIAL PHASE
-       ======================================================== */
+    ======================================================== */
     --fallback-heading-top: 10%;
     --fallback-description-top: 30%;
     --fallback-button-accept-top: 25%;
 
     /* ========================================================
        TEXT WIDTH VARIABLES - INITIAL PHASE
-       ======================================================== */
+    ======================================================== */
     --fallback-heading-width: 80%; /* New */
     --fallback-description-width: 60%; /* New */
 
     /* ========================================================
-       TEXT FONTSIZE VARIABLES - POST-ACCEPT PHASE
-       ======================================================== */
-       /* Font Size Variables - Initial Phase */
-    --fallback-heading-font-size: 24px;
-    --fallback-description-font-size: 16px;
-
-    /* Font Size Variables - Post-Accept Phase */
-    --post-accept-fallback-heading-font-size: 24px;
-    --post-accept-fallback-description-font-size: 16px;
-    --post-accept-fallback-prize-font-size: 18px;
+       TEXT FONT SIZE VARIABLES - INITIAL PHASE
+    ======================================================== */
+    --fallback-heading-font-size: 24px; /* New */
+    --fallback-description-font-size: 16px; /* New */
 
     /* ========================================================
        TEXT POSITION VARIABLES - POST-ACCEPT PHASE
-       ======================================================== */
+    ======================================================== */
     --post-accept-fallback-heading-top: 15%;
     --post-accept-fallback-description-top: 35%;
     --post-accept-fallback-prize-top: 55%;
@@ -44,14 +35,21 @@
 
     /* ========================================================
        TEXT WIDTH VARIABLES - POST-ACCEPT PHASE
-       ======================================================== */
+    ======================================================== */
     --post-accept-fallback-heading-width: 80%; /* New */
     --post-accept-fallback-description-width: 60%; /* New */
     --post-accept-fallback-prize-width: 70%; /* New */
 
     /* ========================================================
+       TEXT FONT SIZE VARIABLES - POST-ACCEPT PHASE
+    ======================================================== */
+    --post-accept-fallback-heading-font-size: 24px; /* New */
+    --post-accept-fallback-description-font-size: 16px; /* New */
+    --post-accept-fallback-prize-font-size: 18px; /* New */
+
+    /* ========================================================
        PRE-ACCEPT PHASE STYLES
-       ======================================================== */
+    ======================================================== */
     /* Heading */
     --fallback-heading-color: #ffffff;
     --fallback-heading-text-shadow: none;
@@ -64,7 +62,7 @@
 
     /* ========================================================
        POST-ACCEPT PHASE STYLES
-       ======================================================== */
+    ======================================================== */
     /* Post-Accept Heading */
     --post-accept-fallback-heading-color: #ffffff;
     --post-accept-fallback-heading-text-shadow: none;
@@ -82,7 +80,7 @@
 
     /* ========================================================
        BUTTON STYLING VARIABLES
-       ======================================================== */
+    ======================================================== */
     /* Accept Button */
     --accept-button-bg: #444444;
     --accept-button-fg: #ffffff;
@@ -269,7 +267,7 @@
 /* PRE-ACCEPT (default) heading & description */
 .fallback-heading {
     top: var(--fallback-heading-top);
-    font-size: 24px;
+    font-size: var(--fallback-heading-font-size); /* Updated */
     font-weight: var(--fallback-heading-font-weight);
     color: var(--fallback-heading-color);
     text-shadow: var(--fallback-heading-text-shadow);
@@ -278,7 +276,7 @@
 
 .fallback-description {
     top: var(--fallback-description-top);
-    font-size: 16px;
+    font-size: var(--fallback-description-font-size); /* Updated */
     font-weight: var(--fallback-description-font-weight);
     color: var(--fallback-description-color);
     text-shadow: var(--fallback-description-text-shadow);
@@ -294,7 +292,7 @@
 /* (No fallback-prize shown in pre-accept by default) */
 .fallback-prize {
     top: var(--fallback-prize-top);
-    font-size: 18px;
+    font-size: var(--fallback-prize-font-size); /* Updated */
     font-weight: normal;
     color: #ffffff;
     text-shadow: none;
@@ -309,7 +307,7 @@
    ============================================================ */
 .post-accept .fallback-heading {
     top: var(--post-accept-fallback-heading-top);
-    font-size: 24px;
+    font-size: var(--post-accept-fallback-heading-font-size); /* Updated */
     font-weight: var(--post-accept-fallback-heading-font-weight);
     color: var(--post-accept-fallback-heading-color);
     text-shadow: var(--post-accept-fallback-heading-text-shadow);
@@ -318,7 +316,7 @@
 
 .post-accept .fallback-description {
     top: var(--post-accept-fallback-description-top);
-    font-size: 16px;
+    font-size: var(--post-accept-fallback-description-font-size); /* Updated */
     font-weight: var(--post-accept-fallback-description-font-weight);
     color: var(--post-accept-fallback-description-color);
     text-shadow: var(--post-accept-fallback-description-text-shadow);
@@ -327,7 +325,7 @@
 
 .post-accept .fallback-prize {
     top: var(--post-accept-fallback-prize-top);
-    font-size: 18px;
+    font-size: var(--post-accept-fallback-prize-font-size); /* Updated */
     font-weight: var(--post-accept-fallback-prize-font-weight);
     color: var(--post-accept-fallback-prize-color);
     text-shadow: var(--post-accept-fallback-prize-text-shadow);
@@ -598,7 +596,7 @@
 .tab-btn {
     padding: 10px 20px !important;
     cursor: pointer;
-    background-color: var(--color-background-02) !important;
+    background-color: var(--color-background-01) !important;
     color: white  !important; 
     font-size: 16px  !important;
     transition: background-color 0.3s ease  !important;
@@ -618,3 +616,290 @@
     border: 1px solid var(--color-primary-02) !important;
 }
 
+/* ============================================================
+   RESPONSIVE FONT SIZES USING CALC() IN TEXT CLASSES
+============================================================ */
+
+/* ============================================================
+   Mobile Devices: Max Width 480px
+============================================================ */
+@media (max-width: 480px) {
+    /* Initial Phase Text Elements */
+    .fallback-heading {
+        font-size: calc(var(--fallback-heading-font-size) - 6px); /* 24px - 6px = 18px */
+    }
+
+    .fallback-description {
+        font-size: calc(var(--fallback-description-font-size) - 4px); /* 16px - 4px = 12px */
+    }
+
+    /* Post-Accept Phase Text Elements */
+    .post-accept .fallback-heading {
+        font-size: calc(var(--post-accept-fallback-heading-font-size) - 6px); /* 24px - 6px = 18px */
+    }
+
+    .post-accept .fallback-description {
+        font-size: calc(var(--post-accept-fallback-description-font-size) - 4px); /* 16px - 4px = 12px */
+    }
+
+    .post-accept .fallback-prize {
+        font-size: calc(var(--post-accept-fallback-prize-font-size) - 4px); /* 18px - 4px = 14px */
+    }
+
+    /* Button Font Sizes */
+    #fallback-button-accept,
+    #fallback-button-play-now,
+    #fallback-button-play-later,
+    #fallback-button-continue {
+        font-size: calc(var(--accept-button-font-size) - 4px); /* 16px - 4px = 12px */
+    }
+}
+
+/* ============================================================
+   Tablet Devices: Min Width 481px and Max Width 768px
+============================================================ */
+@media (min-width: 481px) and (max-width: 768px) {
+    /* Initial Phase Text Elements */
+    .fallback-heading {
+        font-size: calc(var(--fallback-heading-font-size) - 3px); /* 24px - 3px = 21px */
+    }
+
+    .fallback-description {
+        font-size: calc(var(--fallback-description-font-size) - 2px); /* 16px - 2px = 14px */
+    }
+
+    /* Post-Accept Phase Text Elements */
+    .post-accept .fallback-heading {
+        font-size: calc(var(--post-accept-fallback-heading-font-size) - 3px); /* 24px - 3px = 21px */
+    }
+
+    .post-accept .fallback-description {
+        font-size: calc(var(--post-accept-fallback-description-font-size) - 2px); /* 16px - 2px = 14px */
+    }
+
+    .post-accept .fallback-prize {
+        font-size: calc(var(--post-accept-fallback-prize-font-size) - 2px); /* 18px - 2px = 16px */
+    }
+
+    /* Button Font Sizes */
+    #fallback-button-accept,
+    #fallback-button-play-now,
+    #fallback-button-play-later,
+    #fallback-button-continue {
+        font-size: calc(var(--accept-button-font-size) - 2px); /* 16px - 2px = 14px */
+    }
+}
+
+/* ============================================================
+   Desktop Devices: Min Width 769px and Max Width 1200px
+============================================================ */
+@media (min-width: 769px) and (max-width: 1200px) {
+    /* Initial Phase Text Elements */
+    .fallback-heading {
+        font-size: var(--fallback-heading-font-size); /* 24px */
+    }
+
+    .fallback-description {
+        font-size: var(--fallback-description-font-size); /* 16px */
+    }
+
+    /* Post-Accept Phase Text Elements */
+    .post-accept .fallback-heading {
+        font-size: var(--post-accept-fallback-heading-font-size); /* 24px */
+    }
+
+    .post-accept .fallback-description {
+        font-size: var(--post-accept-fallback-description-font-size); /* 16px */
+    }
+
+    .post-accept .fallback-prize {
+        font-size: var(--post-accept-fallback-prize-font-size); /* 18px */
+    }
+
+    /* Button Font Sizes */
+    #fallback-button-accept,
+    #fallback-button-play-now,
+    #fallback-button-play-later,
+    #fallback-button-continue {
+        font-size: var(--accept-button-font-size); /* 16px */
+    }
+}
+
+/* ============================================================
+   Large Desktop Devices: Min Width 1201px
+============================================================ */
+@media (min-width: 1201px) {
+    /* Initial Phase Text Elements */
+    .fallback-heading {
+        font-size: calc(var(--fallback-heading-font-size) + 6px); /* 24px + 6px = 30px */
+    }
+
+    .fallback-description {
+        font-size: calc(var(--fallback-description-font-size) + 4px); /* 16px + 4px = 20px */
+    }
+
+    /* Post-Accept Phase Text Elements */
+    .post-accept .fallback-heading {
+        font-size: calc(var(--post-accept-fallback-heading-font-size) + 6px); /* 24px + 6px = 30px */
+    }
+
+    .post-accept .fallback-description {
+        font-size: calc(var(--post-accept-fallback-description-font-size) + 4px); /* 16px + 4px = 20px */
+    }
+
+    .post-accept .fallback-prize {
+        font-size: calc(var(--post-accept-fallback-prize-font-size) + 4px); /* 18px + 4px = 22px */
+    }
+
+    /* Button Font Sizes */
+    #fallback-button-accept,
+    #fallback-button-play-now,
+    #fallback-button-play-later,
+    #fallback-button-continue {
+        font-size: calc(var(--accept-button-font-size) + 4px); /* 16px + 4px = 20px */
+    }
+}
+
+/* ============================================================
+   LANDSCAPE-ORIENTATION RESPONSIVE FONT SIZES USING CALC() IN TEXT CLASSES
+============================================================ */
+
+/* ============================================================
+   Mobile Devices in Landscape: Max Width 480px and Landscape
+============================================================ */
+@media (max-width: 480px) and (orientation: landscape) {
+    /* Initial Phase Text Elements */
+    .fallback-heading {
+        font-size: calc(var(--fallback-heading-font-size) - 8px); /* 24px - 6px - 2px = 16px */
+    }
+
+    .fallback-description {
+        font-size: calc(var(--fallback-description-font-size) - 6px); /* 16px - 4px - 2px = 10px */
+    }
+
+    /* Post-Accept Phase Text Elements */
+    .post-accept .fallback-heading {
+        font-size: calc(var(--post-accept-fallback-heading-font-size) - 8px); /* 24px - 6px - 2px = 16px */
+    }
+
+    .post-accept .fallback-description {
+        font-size: calc(var(--post-accept-fallback-description-font-size) - 6px); /* 16px - 4px - 2px = 10px */
+    }
+
+    .post-accept .fallback-prize {
+        font-size: calc(var(--post-accept-fallback-prize-font-size) - 6px); /* 18px - 4px - 2px = 12px */
+    }
+
+    /* Button Font Sizes */
+    #fallback-button-accept,
+    #fallback-button-play-now,
+    #fallback-button-play-later,
+    #fallback-button-continue {
+        font-size: calc(var(--accept-button-font-size) - 6px); /* 16px - 4px - 2px = 10px */
+    }
+}
+
+/* ============================================================
+   Tablet Devices in Landscape: Min Width 481px and Max Width 768px and Landscape
+============================================================ */
+@media (min-width: 481px) and (max-width: 768px) and (orientation: landscape) {
+    /* Initial Phase Text Elements */
+    .fallback-heading {
+        font-size: calc(var(--fallback-heading-font-size) - 6px); /* 24px - 3px - 2px = 19px */
+    }
+
+    .fallback-description {
+        font-size: calc(var(--fallback-description-font-size) - 5px); /* 16px - 2px - 2px = 12px */
+    }
+
+    /* Post-Accept Phase Text Elements */
+    .post-accept .fallback-heading {
+        font-size: calc(var(--post-accept-fallback-heading-font-size) - 6px); /* 24px - 3px - 2px = 19px */
+    }
+
+    .post-accept .fallback-description {
+        font-size: calc(var(--post-accept-fallback-description-font-size) - 5px); /* 16px - 2px - 2px = 12px */
+    }
+
+    .post-accept .fallback-prize {
+        font-size: calc(var(--post-accept-fallback-prize-font-size) - 5px); /* 18px - 2px - 2px = 14px */
+    }
+
+    /* Button Font Sizes */
+    #fallback-button-accept,
+    #fallback-button-play-now,
+    #fallback-button-play-later,
+    #fallback-button-continue {
+        font-size: calc(var(--accept-button-font-size) - 4px); /* 16px - 2px - 2px = 12px */
+    }
+}
+
+/* ============================================================
+   Desktop Devices in Landscape: Min Width 769px and Max Width 1200px and Landscape
+============================================================ */
+@media (min-width: 769px) and (max-width: 1200px) and (orientation: landscape) {
+    /* Initial Phase Text Elements */
+    .fallback-heading {
+        font-size: calc(var(--fallback-heading-font-size) - 5px); /* 24px - 0px - 2px = 22px */
+    }
+
+    .fallback-description {
+        font-size: calc(var(--fallback-description-font-size) - 5px); /* 16px - 0px - 2px = 14px */
+    }
+
+    /* Post-Accept Phase Text Elements */
+    .post-accept .fallback-heading {
+        font-size: calc(var(--post-accept-fallback-heading-font-size) - 5px); /* 24px - 0px - 2px = 22px */
+    }
+
+    .post-accept .fallback-description {
+        font-size: calc(var(--post-accept-fallback-description-font-size) - 5px); /* 16px - 0px - 2px = 14px */
+    }
+
+    .post-accept .fallback-prize {
+        font-size: calc(var(--post-accept-fallback-prize-font-size) - 5px); /* 18px - 0px - 2px = 16px */
+    }
+
+    /* Button Font Sizes */
+    #fallback-button-accept,
+    #fallback-button-play-now,
+    #fallback-button-play-later,
+    #fallback-button-continue {
+        font-size: calc(var(--accept-button-font-size) - 2px); /* 16px - 0px - 2px = 14px */
+    }
+}
+
+/* ============================================================
+   Large Desktop Devices in Landscape: Min Width 1201px and Landscape
+============================================================ */
+@media (min-width: 1201px) and (orientation: landscape) {
+    /* Initial Phase Text Elements */
+    .fallback-heading {
+        font-size: calc(var(--fallback-heading-font-size) + 4px); /* 24px + 6px - 2px = 28px */
+    }
+
+    .fallback-description {
+        font-size: calc(var(--fallback-description-font-size) + 2px); /* 16px + 4px - 2px = 18px */
+    }
+
+    /* Post-Accept Phase Text Elements */
+    .post-accept .fallback-heading {
+        font-size: calc(var(--post-accept-fallback-heading-font-size) + 4px); /* 24px + 6px - 2px = 28px */
+    }
+
+    .post-accept .fallback-description {
+        font-size: calc(var(--post-accept-fallback-description-font-size) + 2px); /* 16px + 4px - 2px = 18px */
+    }
+
+    .post-accept .fallback-prize {
+        font-size: calc(var(--post-accept-fallback-prize-font-size) + 2px); /* 18px + 4px - 2px = 20px */
+    }
+
+    /* Button Font Sizes */
+    #fallback-button-accept,
+    #fallback-button-play-now,
+    #fallback-button-play-later,
+    #fallback-button-continue {
+        font-size: calc(var(--accept-button-font-size) + 2px); /* 16px + 4px - 2px = 18px */
+    }
+}
