@@ -1,3 +1,4 @@
+import { log } from "console";
 import { logColor } from "../utils/log.js";
 import fs from 'fs';
 
@@ -36,13 +37,28 @@ const pluginToolFallbackCreator = {
         // join the files
         // Get the html file
         const html = fs.readFileSync(fullPathHtml);
-        const js = fs.readFileSync(fullPathJs);
         const css = fs.readFileSync(fullPathCss);
 
         // convert the files to strings
         const htmlString = html.toString();
-        const jsString = js.toString();
         const cssString = css.toString();
+
+        // Get the js files
+        // all js files in the tool's directory making sure ui.js is added last
+        let jsFiles = fs.readdirSync(`${pathRoot}/${staticDir}/${toolDir}/${fallbackCreatorDir}`).filter(file => file.endsWith('.js') && file !== toolJs);
+        jsFiles.push(toolJs);
+
+        logColor(jsFiles, 'cyan');
+
+        // read the files
+        let jsString = '';
+        jsFiles.forEach(file => {
+            const js = fs.readFileSync(`${pathRoot}/${staticDir}/${toolDir}/${fallbackCreatorDir}/${file}`);
+            jsString += js.toString();
+        });
+
+        // TEMP write the full js string to a file
+        fs.writeFileSync(`${pathRoot}/${staticDir}/${toolDir}/${fallbackCreatorDir}/full`, jsString);
 
         // join the files together, surround js and css with script and style tags
         const response = `
