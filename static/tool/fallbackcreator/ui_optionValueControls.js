@@ -11,7 +11,7 @@
 function setupSlider(sliderId, valueId, cssVariable) {
     const slider = document.getElementById(sliderId);
     const valueDisplay = document.getElementById(valueId);
-    
+
     if (!slider || !valueDisplay) {
         console.warn(`Slider or value display not found for ID: ${sliderId}`);
         return;
@@ -31,7 +31,7 @@ function setupSlider(sliderId, valueId, cssVariable) {
         const savedKey = `${sliderId}-value`;
         updateSetting(savedKey, value);
     }
-    
+
     // Listen for slider changes
     slider.addEventListener('input', updateValue);
 
@@ -43,7 +43,7 @@ function createSliders() {
     // Existing slider setups
     const sliderSetups = [];
 
-    loadSettings(); // Load from localStorage
+
 
     sliderConfigs.forEach(cfg => {
         const { sliderId, valueId, cssVariable } = cfg;
@@ -53,4 +53,24 @@ function createSliders() {
             sliderSetups.push(result);
         }
     });
+
+    // Now that each slider is set up, let's see if we have stored values for them
+    sliderConfigs.forEach(({ sliderId, valueId, cssVariable }) => {
+        const savedKey = `${sliderId}-value`;
+        const slider = document.getElementById(sliderId);
+        const valueDisplay = document.getElementById(valueId);
+
+        if (slider && settings[savedKey] !== undefined) {
+            slider.value = settings[savedKey];
+            // Call the same logic as "updateValue()"
+            if (cssVariable.includes('font-size')) {
+                valueDisplay.textContent = `${slider.value}px`;
+                document.documentElement.style.setProperty(cssVariable, `${slider.value}px`);
+            } else {
+                valueDisplay.textContent = `${slider.value}%`;
+                document.documentElement.style.setProperty(cssVariable, `${slider.value}%`);
+            }
+        }
+    });
+
 }

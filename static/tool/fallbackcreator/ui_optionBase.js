@@ -1,10 +1,4 @@
-/* ============================================================
-   GLOBAL STATE & LOCAL STORAGE HANDLING
-   ============================================================ */
-const localStorageKey = 'fallbackCreatorSettings';
 
-// We'll store user settings in this object:
-let settings = {};
 
 /**
  * Loads settings from localStorage, if any exist.
@@ -102,9 +96,18 @@ function initDynamicFallbackSized() {
    FALLBACK PHASE AND TYPE TOGGLE
    ============================================================ */
 
-function setupPhaseTypeToggleListeners() {
+function setupPhaseTypeToggle() {
     phaseToggle.addEventListener('change', togglePhase);
     useContinueToggle.addEventListener('change', toggleUseContinue);
+
+    // 1) Phase Toggle
+    if (typeof settings.phaseToggle === 'boolean') {
+        phaseToggle.checked = settings.phaseToggle;
+    }
+    // 2) Use Continue
+    if (typeof settings.useContinue === 'boolean') {
+        useContinueToggle.checked = settings.useContinue;
+    }
 }
 
 /**
