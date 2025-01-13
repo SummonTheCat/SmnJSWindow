@@ -93,14 +93,15 @@ function updateImageSource() {
        console.warn('Fallback image element not found.');
        return;
    }
-
+   let randomQuery = Math.random().toString(36).substring(7);
    const isPostAccept = fallbackDiv.classList.contains('post-accept');
    if (isPostAccept) {
-       imgElement.src = 'fallback/outro.png';
+       imgElement.src = 'fallback/outro.png?' + randomQuery;
        imgElement.alt = 'Outro Image';
        console.log('Switched to Post-Accept Phase Image: dev/outro.png');
    } else {
-       imgElement.src = 'fallback/intro.png';
+    
+       imgElement.src = 'fallback/intro.png?' + randomQuery;
        imgElement.alt = 'Intro Image';
        console.log('Switched to Pre-Accept Phase Image: dev/intro.png');
    }
