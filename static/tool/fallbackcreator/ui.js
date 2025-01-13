@@ -3,10 +3,10 @@
 /* ============================================================
    GLOBAL STATE & LOCAL STORAGE HANDLING
    ============================================================ */
-const localStorageKey = 'fallbackCreatorSettings';
+window.localStorageKey = 'fallbackCreatorSettings';
 
 // We'll store user settings in this object:
-let settings = {};
+window.settings = {};
 
 
 console.log('Fallback Creator UI loaded');
@@ -32,3 +32,5 @@ applyTabSettings();
 togglePhase();
 toggleUseContinue();
 updatePrizeText();
+initializeImageUpload();
+

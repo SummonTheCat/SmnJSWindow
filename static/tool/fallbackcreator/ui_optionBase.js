@@ -177,25 +177,4 @@ function updateButtonVisibility() {
     }
 }
 
-/**
- * Updates the image source based on the current phase.
- */
-function updateImageSource() {
-    const imgElement = document.getElementById('fallback-image');
-    if (!imgElement) {
-        console.warn('Fallback image element not found.');
-        return;
-    }
-
-    const isPostAccept = fallbackDiv.classList.contains('post-accept');
-    if (isPostAccept) {
-        imgElement.src = 'dev/outro.png';
-        imgElement.alt = 'Outro Image';
-        console.log('Switched to Post-Accept Phase Image: dev/outro.png');
-    } else {
-        imgElement.src = 'dev/intro.png';
-        imgElement.alt = 'Intro Image';
-        console.log('Switched to Pre-Accept Phase Image: dev/intro.png');
-    }
-}
 

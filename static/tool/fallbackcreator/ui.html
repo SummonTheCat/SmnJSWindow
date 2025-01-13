@@ -18,6 +18,21 @@
                     <label for="use-continue-toggle">Use Continue Button</label>
                 </div>
 
+                <div class="flex-row">
+                    <!-- Fallback Image Selector -->
+                    <!-- 2 File selector fields in the row (only png)-->
+                    <div class="file-selector">
+                        <label for="fallback-image-intro">Intro Image</label>
+                        <input type="file" id="fallback-image-intro" name="fallback-image-intro" accept=".png" />
+                    </div>
+                    
+                    <div class="file-selector">
+                        <label for="fallback-image-outro">Outro Image</label>
+                        <input type="file" id="fallback-image-outro" name="fallback-image-outro" accept=".png" />
+                    </div>
+
+                </div>
+
                 <hr class="hr-main">
 
                 <!-- Tab Navigation -->
@@ -774,7 +789,7 @@
     <div class="tool-panel-preview">
         <div class="tool-content">
             <div class="fallback pre-accept" id="fallback-div">
-                <img src="dev/intro.png" alt="Intro Image" class="fallback-image" id="fallback-image">
+                <img src="fallback/intro.png" alt="Intro Image" class="fallback-image" id="fallback-image">
                 <div class="fallback-overlay" id="fallback-overlay">
                     <div class="fallback-text" id="fallback-text">
                         <p class="fallback-heading">Welcome to EA Fallback</p>

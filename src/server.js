@@ -8,8 +8,11 @@ import { addPlugin, initializePlugins, servePlugins } from './pluginSystem.js';
 function createServer() {
     const app = express();
 
-    // Middleware to parse JSON requests
-    app.use(express.json());
+    // Middleware to parse JSON requests with increased limit
+    app.use(express.json({ limit: '10mb' })); // Adjust the limit as necessary
+
+    // Optional: Middleware to parse URL-encoded data if needed
+    app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
     return {
         /**

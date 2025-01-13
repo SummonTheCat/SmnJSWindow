@@ -23,7 +23,7 @@ const pluginStatics = {
         const rootPath = process.cwd();
         const staticDir = "static";
         const fullPath = path.join(rootPath, staticDir, filePath); 
-        logColor(`Static Path: ${fullPath}`, 'maroon');
+        logColor(`Static Path: ${fullPath}`, 'green');
 
         // Send the file
         res.sendFile(fullPath);
